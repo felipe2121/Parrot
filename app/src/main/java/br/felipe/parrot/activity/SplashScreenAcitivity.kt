@@ -9,15 +9,14 @@ import br.felipe.parrot.R
 class SplashScreenAcitivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val SPLASHSCREEN_DELAY: Long = 1000
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        setContentView(R.layout.splash_screen_activity)
+
+        val SPLASHSCREEN_DELAY: Long = 2000
 
         val handler = Handler()
         handler.postDelayed({
-            val it = Intent(this, ParrotActivity::class.java)
+            val it = Intent(this, LoginActivity::class.java)
             startActivity(it)
             finish()
         }, SPLASHSCREEN_DELAY)
