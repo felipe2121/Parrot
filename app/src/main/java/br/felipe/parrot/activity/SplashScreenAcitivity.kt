@@ -12,7 +12,7 @@ class SplashScreenAcitivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_activity)
 
-        val SPLASHSCREEN_DELAY: Long = 2000
+        val SPLASHSCREEN_DELAY: Long = 1500
 
         val handler = Handler()
         handler.postDelayed({
