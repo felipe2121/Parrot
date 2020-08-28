@@ -5,14 +5,128 @@
     
     <style name="Base.ParrotTheme" parent="Base" >
 
-        <item name="android:background">@color/colorTheme</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MyTheme.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MyTheme.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MyTheme.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MyTheme.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MyTheme.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MyTheme.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MyTheme.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MyTheme.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MyTheme.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MyTheme.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MyTheme.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MyTheme.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MyTheme.Overline</item>
+        <item name="toolbarStyle">@style/Widget.MyTheme.Toolbar.TitleTextAppearance</item>
 
     </style>
 
     <style name="Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/colorStatusBar</item>
+    </style>
 
-        <item name="android:background">@color/colorWhite</item>
+    <style name="Widget.MyTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
+        <item name="titleTextAppearance">@style/Widget.MyTheme.Toolbar.TitleTextAppearance</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 
+    <style name="Widget.MyTheme.Toolbar.TitleTextAppearance">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <!-- fonts styles -->
+
+    <style name="TextAppearance.MyTheme.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="textAppearanceHeadline1">@font/roboto_light</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">96sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="textAppearanceHeadline2">@font/roboto_light</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">60sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="textAppearanceHeadline3">@font/poppins_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">48sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="textAppearanceHeadline4">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">34sp</item>\
+    </style>
+
+    <style name="TextAppearance.MyTheme.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="textAppearanceHeadline5">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="textAppearanceHeadline6">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="textAppearanceSubtitle1">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="textAppearanceSubtitle2">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Body1" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="textAppearanceBody1">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Body2" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="textAppearanceBody2">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="textAppearanceButton">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="textAppearanceCaption">@font/roboto_regular</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.MyTheme.Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="textAppearanceOverline">@font/roboto_medium</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 </resources>

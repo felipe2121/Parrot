@@ -1,6 +1,8 @@
 package br.felipe.parrot.activity
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
 
