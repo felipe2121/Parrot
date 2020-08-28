@@ -37,6 +37,9 @@
 
     <style name="Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/colorStatusBar</item>
+
+
+
     </style>
 
     <style name="Widget.MyTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
@@ -46,7 +49,7 @@
 
     <style name="Widget.MyTheme.Toolbar.TitleTextAppearance">
         <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <!-- fonts styles -->

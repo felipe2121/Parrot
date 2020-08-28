@@ -9,9 +9,11 @@
     <string name="login_password">Senha</string>
     <string name="login_cadastro">Ainda nao tem conta?</string>
 
+    <!-- Register Screen -->
     <string name="register_name">Nome</string>
     <string name="register_email">Email</string>
     <string name="register_password">Senha</string>
     <string name="register_confirm_password">Confirmar Senha</string>
+    <string name="register_toolBar_name">Cadastro</string>
 
 </resources>
