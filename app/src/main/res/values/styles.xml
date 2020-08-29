@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ParrotTheme" parent="Base.ParrotTheme" />
+    <style name="Theme.Parrot" parent="Base.ParrotTheme" />
     
     <style name="Base.ParrotTheme" parent="Base" >
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondary">@color/colorSecondary</item> <!-- float button -->
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
         <item name="colorOnBackground">@color/colorOnBackground</item>
         <item name="colorSurface">@color/colorSurface</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
@@ -36,9 +36,6 @@
     </style>
 
     <style name="Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/colorStatusBar</item>
-
-
 
     </style>
 

@@ -2,19 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.felipe.parrot">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/ParrotTheme" >
+        android:theme="@style/Theme.Parrot" >
 
-        <activity android:name=".activity.LoginActivity"
+        <activity android:name=".activity.activity.LoginActivity"
             android:theme="@style/Base"/>
 
         <activity
-            android:name=".activity.SplashScreenAcitivity">
+            android:name=".activity.activity.SplashScreenAcitivity">
 
             <intent-filter>
 

@@ -4,6 +4,7 @@
 
     <string name="splash_name">Parrot</string>
 
+    <!-- Login Screen -->
     <string name="login_button">Entrar</string>
     <string name="login_email">Email</string>
     <string name="login_password">Senha</string>
@@ -15,5 +16,8 @@
     <string name="register_password">Senha</string>
     <string name="register_confirm_password">Confirmar Senha</string>
     <string name="register_toolBar_name">Cadastro</string>
+
+    <!-- Main Screen -->
+    <string name="main_toolBar_name">Contatos</string>
 
 </resources>

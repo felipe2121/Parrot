@@ -1,4 +1,4 @@
-package br.felipe.parrot.activity
+package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
