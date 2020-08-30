@@ -7,5 +7,6 @@ data class ContactsDTO (
 
     // Can be null
     var name: String? = null,
+    var email: String? = null,
     var phone: String? = null
 )

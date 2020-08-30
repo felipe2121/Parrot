@@ -11,7 +11,7 @@ class Repository {
 
         fun getHttpCaller(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl("https://urlDaApi")
+                .baseUrl("http://contatosapi.herokuapp.com/api/contacts")
                 .addConverterFactory(GsonConverterFactory.create()) // convert JSON in kotlin class
                 .build()
         }

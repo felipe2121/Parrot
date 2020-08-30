@@ -11,6 +11,7 @@ class ContactViewHolder(view: View): RecyclerView.ViewHolder(view) {
     fun bind(contact: Contact) {
         with(itemView) {
             contact_name.text = contact.name
+            contact_email.text = contact.email
             contact_phone.text = contact.phone
         }
     }

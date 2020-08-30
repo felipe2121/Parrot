@@ -20,5 +20,6 @@
     <!-- Main Screen -->
     <string name="main_toolBar_name">Contatos</string>
     <string name="AddContactFragment">Novo Contato</string>
+    <string name="menu_item">Sair</string>
 
 </resources>

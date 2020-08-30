@@ -5,12 +5,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.adapter.ContactsListAdapter
-import br.felipe.parrot.activity.fragment.ContactFragment
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_fragment.*
 
@@ -22,11 +18,57 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        main_toolbar.setupWithNavController(navController, appBarConfiguration)
+        setupUI()
 
         contact_list.adapter = contactsListContacts
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+
+        if(item.itemId == R.id.action_out) {
+            Intent(this, RegisterActivity::class.java).also {
+                startActivity(it)
+            }
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setupUI() {
+        setSupportActionBar(main_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
