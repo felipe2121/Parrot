@@ -12,20 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parrot" >
 
+        <activity android:name=".activity.activity.SplashScreenAcitivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".activity.activity.LoginActivity"
             android:theme="@style/Base"/>
 
-        <activity
-            android:name=".activity.activity.SplashScreenAcitivity">
+        <activity android:name=".activity.activity.RegisterActivity"
+            android:theme="@style/Base"/>
 
-            <intent-filter>
-
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".activity.activity.MainActivity"
+            android:theme="@style/Base"/>
 
     </application>
 
