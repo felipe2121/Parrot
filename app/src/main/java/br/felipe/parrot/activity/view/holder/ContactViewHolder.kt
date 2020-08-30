@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.felipe.parrot.activity.Contact
 import kotlinx.android.synthetic.main.main_view_holder.view.*
 
-class ListViewHolder(view: View): RecyclerView.ViewHolder(view) {
+class ContactViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     // layout items
     fun bind(contact: Contact) {

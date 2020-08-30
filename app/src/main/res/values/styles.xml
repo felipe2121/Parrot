@@ -31,7 +31,6 @@
         <item name="textAppearanceButton">@style/TextAppearance.MyTheme.Button</item>
         <item name="textAppearanceCaption">@style/TextAppearance.MyTheme.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MyTheme.Overline</item>
-        <item name="toolbarStyle">@style/Widget.MyTheme.Toolbar.TitleTextAppearance</item>
 
     </style>
 
@@ -39,12 +38,7 @@
 
     </style>
 
-    <style name="Widget.MyTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
-        <item name="titleTextAppearance">@style/Widget.MyTheme.Toolbar.TitleTextAppearance</item>
-        <item name="android:background">@color/colorPrimary</item>
-    </style>
-
-    <style name="Widget.MyTheme.Toolbar.TitleTextAppearance">
+    <style name="ToolBarTitle">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">22sp</item>
     </style>

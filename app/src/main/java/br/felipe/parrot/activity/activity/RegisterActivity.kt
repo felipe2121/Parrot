@@ -15,7 +15,6 @@ class RegisterActivity: AppCompatActivity() {
     /*topAppBar.setNavigationOnClickListener {
         // Handle navigation icon press
     }
-
     topAppBar.setOnMenuItemClickListener { menuItem ->
         when (menuItem.itemId) {
             R.id.favorite -> {
