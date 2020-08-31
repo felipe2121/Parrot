@@ -20,7 +20,7 @@ class MainActivity: AppCompatActivity() {
 
         setupUI()
 
-        contact_list.adapter = contactsListContacts
+        // contact_list.adapter = contactsListContacts
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,8 +46,6 @@ class MainActivity: AppCompatActivity() {
 
     private fun setupUI() {
         setSupportActionBar(main_toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
     }
 }
 

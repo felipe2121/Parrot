@@ -6,13 +6,32 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.login_activity.*
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
+        setContentView(R.layout.login_activity)
 
+        setUp()
+    }
+
+    private fun setUp() {
+        val btn_login = login_log_button
+        val btn_register = login_register_button
+
+        btn_login.setOnClickListener {
+            val it = Intent(this, MainActivity::class.java)
+            startActivity(it)
+            finish()
+        }
+
+        btn_register.setOnClickListener {
+            val it = Intent(this, RegisterActivity::class.java)
+            startActivity(it)
+            finish()
+        }
     }
 
     /**Error message*/

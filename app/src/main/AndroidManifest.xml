@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parrot" >
 
-        <activity android:name=".activity.activity.SplashScreenAcitivity">
+        <activity android:name=".activity.activity.SplashScreenAcitivity"
+            android:theme="@style/SplashScreen">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,14 +21,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.activity.LoginActivity"
-            android:theme="@style/Base"/>
+        <activity android:name=".activity.activity.LoginActivity"/>
 
-        <activity android:name=".activity.activity.RegisterActivity"
-            android:theme="@style/Base"/>
+        <activity android:name=".activity.activity.RegisterActivity"/>
 
-        <activity android:name=".activity.activity.MainActivity"
-            android:theme="@style/Base"/>
+        <activity android:name=".activity.activity.MainActivity"/>
 
     </application>
 

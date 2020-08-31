@@ -5,6 +5,12 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.concurrent.schedule
 
 class SplashScreenAcitivity: AppCompatActivity() {
 
@@ -20,5 +26,24 @@ class SplashScreenAcitivity: AppCompatActivity() {
             startActivity(it)
             finish()
         }, SPLASHSCREEN_DELAY)
+
+        /*val timer = Timer()
+
+        timer.schedule(3000) {
+            val it = Intent(this@SplashScreenAcitivity, LoginActivity::class.java)
+            startActivity(it)
+            finish()
+        }*/
+
+        /*val activityScope = CoroutineScope(Dispatchers.Main)
+
+        activityScope.launch {
+            delay(3000)
+
+            val it = Intent(this@SplashScreenAcitivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }*/
+
     }
 }

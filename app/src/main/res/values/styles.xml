@@ -2,19 +2,28 @@
 <resources>
 
     <style name="Theme.Parrot" parent="Base.ParrotTheme" />
-    
+
+    <style name="SplashScreen" parent="Base.ParrotTheme">
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="Base.ParrotTheme" parent="Base" >
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
+
         <item name="colorSecondary">@color/colorSecondary</item> <!-- float button -->
         <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
-        <item name="android:colorBackground">@color/colorPrimary</item>
-        <item name="colorOnBackground">@color/colorOnBackground</item>
-        <item name="colorSurface">@color/colorSurface</item>
+
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorOnBackground">@color/colorOnSecondary</item>
+
+        <item name="colorSurface">@color/colorPrimary</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
+
         <item name="colorError">@color/colorError</item>
         <item name="colorOnError">@color/colorOnError</item>
 
@@ -32,19 +41,25 @@
         <item name="textAppearanceCaption">@style/TextAppearance.MyTheme.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MyTheme.Overline</item>
 
-    </style>
-
-    <style name="Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
 
     </style>
 
-    <style name="ToolBarTitle">
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textSize">22sp</item>
+    <style name="Base" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
+
+    <style name="Widget.MaterialComponents.Toolbar.PrimarySurface" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="textAppearanceButton">@style/TextAppearance.MyTheme.Button</item>
+
+    </style>
+
+    <style name="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="subtitleTextColor">@color/colorOnSurface</item>
     </style>
 
     <!-- fonts styles -->
-
     <style name="TextAppearance.MyTheme.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="textAppearanceHeadline1">@font/roboto_light</item>
         <item name="android:fontFamily">@font/roboto_light</item>
