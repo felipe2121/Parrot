@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.adapter.ContactsListAdapter
 import kotlinx.android.synthetic.main.main_activity.*
-import kotlinx.android.synthetic.main.main_fragment.*
 
 class MainActivity: AppCompatActivity() {
 
@@ -46,6 +45,13 @@ class MainActivity: AppCompatActivity() {
 
     private fun setupUI() {
         setSupportActionBar(main_toolbar)
+
+        floating_action_button.setOnClickListener {
+            val i = Intent(this, NewContact::class.java)
+            startActivity(i)
+            finish()
+        }
+
     }
 }
 

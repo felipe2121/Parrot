@@ -2,10 +2,8 @@ package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_activity.*
 
 class LoginActivity : AppCompatActivity() {
@@ -18,18 +16,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setUp() {
-        val btn_login = login_log_button
-        val btn_register = login_register_button
 
-        btn_login.setOnClickListener {
-            val it = Intent(this, MainActivity::class.java)
-            startActivity(it)
+        login_log_button.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
             finish()
         }
 
-        btn_register.setOnClickListener {
-            val it = Intent(this, RegisterActivity::class.java)
-            startActivity(it)
+        login_register_button.setOnClickListener {
+            val i = Intent(this, RegisterActivity::class.java)
+            startActivity(i)
             finish()
         }
     }

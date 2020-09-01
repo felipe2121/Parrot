@@ -16,10 +16,30 @@
     <string name="register_password">Senha</string>
     <string name="register_confirm_password">Confirmar Senha</string>
     <string name="register_toolBar_name">Cadastro</string>
+    <string name="register_button">Finalizar</string>
+
+    <!-- Toolbar regiter screnn -->
+    <string name="back_icon">Voltar</string>
 
     <!-- Main Screen -->
     <string name="main_toolBar_name">Contatos</string>
     <string name="AddContactFragment">Novo Contato</string>
     <string name="menu_item">Sair</string>
+
+    <!-- add new contact screen -->
+    <string name="add_new_toolbar_name">Novo Contato</string>
+    <string name="add_new_text_input_name">Nome</string>
+    <string name="add_new_text_input_email">Email</string>
+    <string name="add_new_text_input_phone">Telefone</string>
+    <string name="add_new_button">Criar</string>
+
+    <!-- contact screen -->
+    <string name="contact_toolbar_name">Contato</string>
+    
+    <!-- edit contact -->
+
+    <!-- menu contact -->
+    <string name="ic_delete_title">Apagar contato</string>
+    <string name="ic_edit_title">Editar</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package br.felipe.parrot.activity.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -43,6 +44,7 @@ class RegisterActivity: AppCompatActivity() {
     /*topAppBar.setNavigationOnClickListener {
         // Handle navigation icon press
     }
+
     topAppBar.setOnMenuItemClickListener { menuItem ->
         when (menuItem.itemId) {
             R.id.favorite -> {

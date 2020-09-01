@@ -41,22 +41,16 @@
         <item name="textAppearanceCaption">@style/TextAppearance.MyTheme.Caption</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MyTheme.Overline</item>
 
-        <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.PrimarySurface</item>
+        <item name="toolbarStyle">@style/Widget.ParrotTheme.Toolbar.PrimarySurface</item>
 
     </style>
 
     <style name="Base" parent="Theme.MaterialComponents.DayNight.NoActionBar"/>
 
-    <style name="Widget.MaterialComponents.Toolbar.PrimarySurface" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="textAppearanceButton">@style/TextAppearance.MyTheme.Button</item>
-
-    </style>
-
-    <style name="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="android:background">@color/colorPrimary</item>
-        <item name="titleTextColor">@color/white</item>
-        <item name="actionMenuTextColor">@color/white</item>
-        <item name="subtitleTextColor">@color/colorOnSurface</item>
+    <style name="Widget.ParrotTheme.Toolbar.PrimarySurface" parent="Widget.MaterialComponents.Toolbar.PrimarySurface">
+        <item name="textAppearanceButton">@font/roboto_medium</item>
+        <item name="android:textSize">20sp</item>
+        <item name="toolbarNavigationButtonStyle">@color/colorOnPrimary</item>
     </style>
 
     <!-- fonts styles -->
