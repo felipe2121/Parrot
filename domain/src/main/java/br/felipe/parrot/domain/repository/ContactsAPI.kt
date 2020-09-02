@@ -1,16 +1,16 @@
 package br.felipe.parrot.domain.repository
 
-import br.felipe.parrot.data.dto.ContactsDTO
-import retrofit2.Call
-import retrofit2.http.GET
+import br.felipe.parrot.data.dto.LoginUserDTO
+import br.felipe.parrot.data.dto.UserDTO
+import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface ContactsAPI {
 
-    // GET da api
-    @GET("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +
-            ".eyJ1c2VyIjoiNWVkYWExZDNkODI1YmIzZjgzYmRiMzRkIiwiaWF0IjoxNTkxMzg2NTc5fQ" +
-            ".W-F0zh-8H1DhSukoCIMj53twSMYY7QwoQrbveSEhRXA")
-    fun searchContacts(
+    // SENT to api
+    @POST("signup")
+    fun sendSingup(
+        @Body singUp: UserDTO
+    ): LoginUserDTO
 
-    ): Call<ContactsDTO>
 }
