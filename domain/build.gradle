@@ -2,4 +2,5 @@ apply from: '../lib.gradle'
 
 dependencies {
     implementation project(":data")
+    implementation project(":core")
 }

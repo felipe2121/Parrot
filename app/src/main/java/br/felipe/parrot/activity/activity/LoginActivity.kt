@@ -3,16 +3,24 @@ package br.felipe.parrot.activity.activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import br.felipe.parrot.R
+import br.felipe.parrot.data.dto.UserDTO
+import br.felipe.parrot.domain.repository.LoginRemoteRepository
 import kotlinx.android.synthetic.main.login_activity.*
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
-
         setUp()
+
+        /*lifecycleScope.launch {
+            val response = LoginRemoteRepository().sendSingUp()
+        }*/
+
     }
 
     private fun setUp() {

@@ -9,7 +9,7 @@ interface ContactsAPI {
 
     // SENT to api
     @POST("signup")
-    fun sendSingup(
+    suspend fun sendSingUp(
         @Body singUp: UserDTO
     ): LoginUserDTO
 
