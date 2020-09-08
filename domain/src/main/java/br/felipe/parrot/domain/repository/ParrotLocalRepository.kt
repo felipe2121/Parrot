@@ -4,6 +4,7 @@ import br.felipe.parrot.data.dao.UserDAO
 import br.felipe.parrot.data.dto.LoginUserDTO
 import br.felipe.parrot.data.dto.UserDTO
 import br.felipe.parrot.data.entity.UserEntity
+import br.felipe.parrot.data.toEntity
 import br.felipe.parrot.domain._config.repository.ParrotRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -16,6 +17,6 @@ class ParrotLocalRepository(
     }
 
     suspend fun saveDataUser(loginUserData: LoginUserDTO) {
-        userDAO.insertOrUpdate(loginUserData) // to.Entity
+        userDAO.insertOrUpdate(loginUserData.toEntity())
     }
 }
