@@ -1,4 +1,4 @@
-package br.felipe.parrot.core.uil
+package br.felipe.parrot.core.util
 
 import android.content.Context
 import androidx.annotation.StringRes

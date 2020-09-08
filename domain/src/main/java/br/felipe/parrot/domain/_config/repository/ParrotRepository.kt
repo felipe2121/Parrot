@@ -1,6 +1,6 @@
 package br.felipe.parrot.domain._config.repository
 
-import br.felipe.parrot.core.uil.ParrotResult
+import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.domain.BuildConfig
 import br.felipe.parrot.domain._config.exepetion.toNetworkException
 import kotlinx.coroutines.CoroutineScope
@@ -10,9 +10,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
-class ParrotRepository {
+abstract class ParrotRepository {
 
     // network data
     abstract class Remote {
@@ -21,7 +20,9 @@ class ParrotRepository {
 
             val clientBuilder = OkHttpClient.Builder().apply {
                 if (BuildConfig.DEBUG) {
-                    addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
+                    addInterceptor(HttpLoggingInterceptor().apply {
+                        level = HttpLoggingInterceptor.Level.BODY
+                    })
                 }
             }
 

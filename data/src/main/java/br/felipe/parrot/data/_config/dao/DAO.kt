@@ -26,15 +26,18 @@ abstract class DAO<T> {
     protected abstract suspend fun update(vararg data: @JvmSuppressWildcards T)
 
     open suspend fun insertOrUpdate(vararg data: @JvmSuppressWildcards T) {
-        data.forEach { if (insert(it) == DATA_NOT_INSERTED) update(it) }
+        data.forEach {
+            if (insert(it) == DATA_NOT_INSERTED) update(it)
+        }
     }
 
     open suspend fun insertOrUpdate(data: List<@JvmSuppressWildcards T>) {
-        data.forEach { if (insert(it) == DATA_NOT_INSERTED) update(it) }
+        data.forEach {
+            if (insert(it) == DATA_NOT_INSERTED) update(it)
+        }
     }
 
     open suspend fun insertOrUpdate(data: @JvmSuppressWildcards T): Long {
-
         var dataID = insert(data)
         if (dataID == DATA_NOT_INSERTED) dataID = update(data).toLong()
         return dataID

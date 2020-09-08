@@ -1,7 +1,7 @@
 package br.felipe.parrot.domain._config.exepetion
 
 import br.felipe.parrot.core.exception.ParrotException
-import br.felipe.parrot.core.uil.StringWrapper
+import br.felipe.parrot.core.util.StringWrapper
 import br.felipe.parrot.domain.R
 import retrofit2.HttpException
 import java.net.*

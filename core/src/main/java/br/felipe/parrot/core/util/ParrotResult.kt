@@ -1,4 +1,4 @@
-package br.felipe.parrot.core.uil
+package br.felipe.parrot.core.util
 
 import java.io.Serializable
 

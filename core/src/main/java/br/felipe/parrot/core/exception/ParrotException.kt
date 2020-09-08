@@ -1,6 +1,6 @@
 package br.felipe.parrot.core.exception
 
-import br.felipe.parrot.core.uil.StringWrapper
+import br.felipe.parrot.core.util.StringWrapper
 
 open class ParrotException: Exception {
 

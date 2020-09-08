@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.felipe.parrot.data.BuildConfig
+import br.felipe.parrot.data.dao.UserDAO
 import br.felipe.parrot.data.entity.UserEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -45,6 +46,8 @@ abstract class ParrotDatabase: RoomDatabase() {
                 .fallbackToDestructiveMigration()
                 .build()
         }
-
     }
+
+    abstract val userDAO: UserDAO
+
 }
