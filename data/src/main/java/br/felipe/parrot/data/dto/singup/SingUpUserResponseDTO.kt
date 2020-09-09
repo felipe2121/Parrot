@@ -1,6 +1,6 @@
-package br.felipe.parrot.data.dto
+package br.felipe.parrot.data.dto.singup
 
-data class UserResponseDTO (
+data class SingUpUserResponseDTO (
     var id: String = "",
     var name: String = "",
     var email: String = ""

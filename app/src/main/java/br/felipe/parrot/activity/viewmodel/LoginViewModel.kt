@@ -1,6 +1,11 @@
 package br.felipe.parrot.activity.viewmodel
 
-class LoginViewModel {
+import androidx.lifecycle.ViewModel
+import br.felipe.parrot.domain.usecase.LoginUseCase
+
+class LoginViewModel(
+    private val loginUseCase: LoginUseCase
+): ViewModel() {
 
 
 }
