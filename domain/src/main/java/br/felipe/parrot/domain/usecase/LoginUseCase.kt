@@ -21,7 +21,8 @@ class LoginUseCase (
 
         if(params == null) return ParrotResult.failure(ParrotException())
 
-        // if(params.userInputLogin == null) return ParrotResult.failure(ParrotException())
+        if (params.userInputLogin.email.isBlank()
+            || params.userInputLogin.password.isBlank()) return ParrotResult.failure(ParrotException())
 
         return userRepository.login(params.userInputLogin)
     }

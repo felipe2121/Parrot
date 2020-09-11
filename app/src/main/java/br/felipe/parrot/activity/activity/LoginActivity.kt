@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.viewmodel.LoginViewModel
+import br.felipe.parrot.core.ViewState
 import kotlinx.android.synthetic.main.login_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,18 +34,14 @@ class LoginActivity : AppCompatActivity() {
             val inputTextEmail = login_text_email.editText?.text.toString()
             val inputTextPassword = login_text_password.editText?.text.toString()
 
-            login_text_email.error = null
-            login_text_password.error = null
-
-            if (inputTextEmail.isBlank()) login_text_email.error = getString(R.string.isBlankError)
-            if (inputTextPassword.isBlank()) login_text_password.error = getString(R.string.isBlankError)
-
-            if (!inputTextEmail.isBlank() && inputTextPassword.isBlank()) {
-
+            if (viewModel.viewState.value is ViewState.ErrorState){
+                login_text_email.error = getString(R.string.isBlankError)
+                login_text_password.error = getString(R.string.isBlankError)
+            } else {
+                login_text_email.error = null
+                login_text_password.error = null
 
                 viewModel.login(inputTextEmail, inputTextPassword)
-
-
             }
 
             /*val i = Intent(this, MainActivity::class.java)

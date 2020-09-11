@@ -17,7 +17,12 @@ class SignInUseCase (
     )
 
     override suspend fun execute(params: ParamsSignIn?): ParrotResult<SignInReceiveUserDTO> {
+
         if(params == null) return ParrotResult.failure(ParrotException())
-        return userRepository.signIn(params.userInputSignIn)
+
+        /*if (params.userInputSignIn.name.isNotBlank() &&
+            params.userInputSignIn.email.isNotBlank() &&
+            params.userInputSignIn.password.isNotBlank())*/
+            return userRepository.signIn(params.userInputSignIn)
     }
 }

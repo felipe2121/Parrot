@@ -7,10 +7,15 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
+import br.felipe.parrot.activity.viewmodel.SingInViewModel
+import kotlinx.android.synthetic.main.login_activity.*
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.register_activity.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterActivity: AppCompatActivity() {
+
+    private val viewModel by viewModel<SingInViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +44,18 @@ class RegisterActivity: AppCompatActivity() {
         setSupportActionBar(register_toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
+
+        register_button.setOnClickListener {
+
+            val registerName = register_name.editText?.text.toString()
+            val registerEmail = register_email.editText?.text.toString()
+            val registerPassword = register_password.editText?.text.toString()
+            val registerPasswordConfirm = register_confirm_password.editText?.text.toString()
+
+                // Confirm password
+                viewModel.signIn(registerName, registerEmail, registerPassword)
+
+        }
     }
 
     /*topAppBar.setNavigationOnClickListener {

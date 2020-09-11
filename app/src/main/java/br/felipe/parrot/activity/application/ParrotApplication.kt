@@ -2,6 +2,7 @@ package br.felipe.parrot.activity.application
 
 import android.app.Application
 import br.felipe.parrot.activity.viewmodel.LoginViewModel
+import br.felipe.parrot.activity.viewmodel.SingInViewModel
 import br.felipe.parrot.data._config.ParrotDatabase
 import br.felipe.parrot.domain.repository.ParrotRemoteRepository
 import br.felipe.parrot.domain.repository.UserRepository
@@ -43,6 +44,7 @@ class ParrotApplication:Application() {
 
             val viewModelModule = module {
                 factory { LoginViewModel(login = get()) }
+                factory { SingInViewModel(singIn = get()) }
             }
 
             modules(listOf(daoModule, repositoryModule, useCaseModule, viewModelModule))
