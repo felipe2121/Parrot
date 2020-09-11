@@ -42,4 +42,7 @@
     <string name="ic_delete_title">Apagar contato</string>
     <string name="ic_edit_title">Editar</string>
 
+    <!-- Input error message -->
+    <string name="isBlankError">Campo de texto vazio</string>
+
 </resources>

@@ -2,8 +2,8 @@ package br.felipe.parrot.domain.repository
 
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
-import br.felipe.parrot.data.dto.singup.SingUpReceiveUserDTO
-import br.felipe.parrot.data.dto.singup.SingUpSendUserDTO
+import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
+import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -12,8 +12,8 @@ interface ContactsAPI {
     // SENT to api
     @POST("signup")
     suspend fun sendSingUp(
-        @Body singUp: SingUpSendUserDTO
-    ): SingUpReceiveUserDTO
+        @Body signIn: SignInSendUserDTO
+    ): SignInReceiveUserDTO
 
     @POST("login")
     suspend fun sendLogin(

@@ -1,12 +1,13 @@
 package br.felipe.parrot.activity.application
 
 import android.app.Application
+import br.felipe.parrot.activity.viewmodel.LoginViewModel
 import br.felipe.parrot.data._config.ParrotDatabase
 import br.felipe.parrot.domain.repository.ParrotRemoteRepository
 import br.felipe.parrot.domain.repository.UserRepository
 import br.felipe.parrot.domain.repository.ParrotLocalRepository
 import br.felipe.parrot.domain.usecase.LoginUseCase
-import br.felipe.parrot.domain.usecase.SingUpUseCase
+import br.felipe.parrot.domain.usecase.SignInUseCase
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -37,10 +38,14 @@ class ParrotApplication:Application() {
 
             val useCaseModule = module {
                 factory { LoginUseCase(userRepository = get()) }
-                factory { SingUpUseCase(userRepository = get()) }
+                factory { SignInUseCase(userRepository = get()) }
             }
 
-            modules(listOf(daoModule, repositoryModule, useCaseModule))
+            val viewModelModule = module {
+                factory { LoginViewModel(login = get()) }
+            }
+
+            modules(listOf(daoModule, repositoryModule, useCaseModule, viewModelModule))
         }
     }
 }

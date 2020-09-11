@@ -1,10 +1,10 @@
 package br.felipe.parrot.data
 
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
-import br.felipe.parrot.data.dto.singup.SingUpReceiveUserDTO
+import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.entity.UserEntity
 
-fun SingUpReceiveUserDTO.toEntity() = UserEntity(
+fun SignInReceiveUserDTO.toEntity() = UserEntity(
     id = this.user.id,
     name = this.user.name,
     email = this.user.email,

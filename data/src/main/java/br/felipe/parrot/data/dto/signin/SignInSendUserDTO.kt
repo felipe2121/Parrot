@@ -1,7 +1,7 @@
-package br.felipe.parrot.data.dto.singup
+package br.felipe.parrot.data.dto.signin
 
 // recipe everything
-data class SingUpSendUserDTO (
+data class SignInSendUserDTO (
 
     // @SerializedName("nome") var name: String
 

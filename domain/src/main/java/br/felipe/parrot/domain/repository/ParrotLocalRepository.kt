@@ -2,7 +2,7 @@ package br.felipe.parrot.domain.repository
 
 import br.felipe.parrot.data.dao.UserDAO
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
-import br.felipe.parrot.data.dto.singup.SingUpReceiveUserDTO
+import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.entity.UserEntity
 import br.felipe.parrot.data.toEntity
 import br.felipe.parrot.domain._config.repository.ParrotRepository
@@ -15,7 +15,7 @@ class ParrotLocalRepository(
         return userDAO.getAll()
     }
 
-    suspend fun saveSingUpDataUser(singUpUserData: SingUpReceiveUserDTO) {
+    suspend fun saveSingUpDataUser(singUpUserData: SignInReceiveUserDTO) {
         userDAO.insertOrUpdate(singUpUserData.toEntity())
     }
 
