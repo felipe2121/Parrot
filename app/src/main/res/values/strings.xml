@@ -43,6 +43,6 @@
     <string name="ic_edit_title">Editar</string>
 
     <!-- Input error message -->
-    <string name="isBlankError">Campo de texto vazio</string>
+    <string name="isBlankError">Campo obrigatório</string>
 
 </resources>

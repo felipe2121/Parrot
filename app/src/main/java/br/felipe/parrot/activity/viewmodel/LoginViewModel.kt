@@ -27,7 +27,7 @@ class LoginViewModel(
             }.onSuccess {
 
             }.onFailure {
-                _viewState.value = ViewState.ErrorState(it.errorMessage)
+                _viewState.value = ViewState.ErrorState(it)
             }.onFinish {
 
             }.execute()
