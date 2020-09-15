@@ -18,7 +18,7 @@ class SplashScreenAcitivity: AppCompatActivity() {
         setContentView(R.layout.splash_screen_activity)
 
         activityScope.launch {
-            delay(3000)
+            delay(1500)
             val intent = Intent(this@SplashScreenAcitivity, LoginActivity::class.java)
             startActivity(intent)
             finish()

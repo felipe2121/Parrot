@@ -25,7 +25,7 @@ class LoginViewModel(
             .onStarted {
                 _viewState.value = ViewState.LoadingState
             }.onSuccess {
-
+                _viewState.value = ViewState.IdleState
             }.onFailure {
                 _viewState.value = ViewState.ErrorState(it)
             }.onFinish {

@@ -1,7 +1,10 @@
 package br.felipe.parrot.activity.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.core.util.onFailure
 import br.felipe.parrot.core.util.onSuccess
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
@@ -14,17 +17,21 @@ class SingInViewModel(
     private val singIn: SignInUseCase
 ): ViewModel() {
 
-    fun signIn(inputSignInName: String, inputSignInEmail: String, inputSignInPassword: String) = viewModelScope.launch {
+    private val _viewState = MutableLiveData<ViewState>()
+    val viewState = _viewState as LiveData<ViewState>
 
-        val signInInput = SignInSendUserDTO(inputSignInName, inputSignInEmail, inputSignInPassword)
+    fun signIn(inputSignInName: String, inputSignInEmail: String, inputSignInPassword: String, inputSignInConfirmPassword: String)
+            = viewModelScope.launch {
+
+        val signInInput = SignInSendUserDTO(inputSignInName, inputSignInEmail, inputSignInPassword, inputSignInConfirmPassword)
 
         singIn(SignInUseCase.ParamsSignIn(signInInput))
             .onStarted {
 
             }.onSuccess {
-
+                _viewState.value = ViewState.IdleState
             }.onFailure {
-
+                _viewState.value = ViewState.ErrorState(it)
             }.onFinish {
 
             }.execute()

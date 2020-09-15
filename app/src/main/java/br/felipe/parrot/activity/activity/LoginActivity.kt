@@ -10,9 +10,15 @@ import androidx.lifecycle.observe
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.viewmodel.LoginViewModel
 import br.felipe.parrot.core.ViewState
+import br.felipe.parrot.core.exception.ParrotException
+import br.felipe.parrot.domain.usecase.LoginUseCase
+import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException
+import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInput.EMAIL
+import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInput.PASSWORD
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.Console
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
-        setUp()
+        setUpUI()
         subscribeUI()
 
         /*lifecycleScope.launch {
@@ -31,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun setUp() {
+    private fun setUpUI() {
 
         login_log_button.setOnClickListener {
 
@@ -41,21 +47,13 @@ class LoginActivity : AppCompatActivity() {
             login_text_email.error = null
             login_text_password.error = null
 
-            if (viewModel.viewState.value is ViewState.ErrorState){
+            viewModel.login(inputTextEmail, inputTextPassword)
 
-                login_text_email.error = getString(R.string.isBlankError)
-                login_text_password.error = getString(R.string.isBlankError)
-            } else {
-
-                login_text_email.error = null
-                login_text_password.error = null
-
-                viewModel.login(inputTextEmail, inputTextPassword)
+            if(viewModel.viewState.value is ViewState.IdleState) {
+                val i = Intent(this, MainActivity::class.java)
+                startActivity(i)
+                finish()
             }
-
-            /*val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-            finish()*/
         }
 
         login_register_button.setOnClickListener {
@@ -77,7 +75,21 @@ class LoginActivity : AppCompatActivity() {
 
                 }
                 is ViewState.ErrorState -> {
-                    Snackbar.make(Container, it.message(this@LoginActivity), Snackbar.LENGTH_LONG).show()
+
+                    val exception: ParrotException = it.error
+                    if (exception is LoginInputException) {
+
+                        exception.errors.forEach{
+                            if(it.type == EMAIL) {
+                                login_text_email.error = getString(R.string.isBlankError)
+                            }
+                            if(it.type == PASSWORD) {
+                                login_text_password.error = getString(R.string.isBlankError)
+                            }
+                        }
+                    } else {
+                        Snackbar.make(Container, exception.errorMessage(this@LoginActivity), Snackbar.LENGTH_LONG).show()
+                    }
                 }
             }
         }

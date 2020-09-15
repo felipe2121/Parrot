@@ -9,9 +9,9 @@ import br.felipe.parrot.domain.R
 import br.felipe.parrot.domain._config.usecase.ParrotUseCase
 import br.felipe.parrot.domain.repository.UserRepository
 import br.felipe.parrot.domain.usecase.LoginUseCase.*
-import br.felipe.parrot.domain.usecase.LoginUseCase.SignInInputException.ErrorType
-import br.felipe.parrot.domain.usecase.LoginUseCase.SignInInputException.LoginInput.EMAIL
-import br.felipe.parrot.domain.usecase.LoginUseCase.SignInInputException.LoginInput.PASSWORD
+import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.ErrorType
+import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInput.EMAIL
+import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInput.PASSWORD
 
 class LoginUseCase (
     private val userRepository: UserRepository
@@ -21,7 +21,7 @@ class LoginUseCase (
         val userInputLogin: LoginSendUserDTO
     )
 
-    class SignInInputException (val error: List<ErrorType>): ParrotException() {
+    class LoginInputException (val errors: List<ErrorType>): ParrotException() {
         enum class LoginInput{ EMAIL, PASSWORD }
         data class ErrorType(val type: LoginInput, val message: StringWrapper)
     }
@@ -37,7 +37,7 @@ class LoginUseCase (
         if(params.userInputLogin.password.isBlank()) errors.add(ErrorType(PASSWORD, StringWrapper(R.string.isBlank_error)))
 
         return if(errors.isEmpty()) userRepository.login(params.userInputLogin)
-        else ParrotResult.failure(SignInInputException(errors))
+        else ParrotResult.failure(LoginInputException(errors))
     }
 }
 

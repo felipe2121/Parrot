@@ -1,15 +1,18 @@
 package br.felipe.parrot.activity.activity
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.viewmodel.SingInViewModel
+import br.felipe.parrot.core.ViewState
+import br.felipe.parrot.core.exception.ParrotException
+import br.felipe.parrot.domain.usecase.SignInUseCase
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_activity.*
-import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.register_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,6 +25,7 @@ class RegisterActivity: AppCompatActivity() {
         setContentView(R.layout.register_activity)
 
         setupUI()
+        subscribeUI()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,14 +51,55 @@ class RegisterActivity: AppCompatActivity() {
 
         register_button.setOnClickListener {
 
-            val registerName = register_name.editText?.text.toString()
-            val registerEmail = register_email.editText?.text.toString()
-            val registerPassword = register_password.editText?.text.toString()
-            val registerPasswordConfirm = register_confirm_password.editText?.text.toString()
+            val registerName = register_text_name.editText?.text.toString()
+            val registerEmail = register_text_email.editText?.text.toString()
+            val registerPassword = register_text_password.editText?.text.toString()
+            val registerPasswordConfirm = register_confirm_text_password.editText?.text.toString()
 
-                // Confirm password
-                viewModel.signIn(registerName, registerEmail, registerPassword)
+            viewModel.signIn(registerName, registerEmail, registerPassword, registerPasswordConfirm)
 
+            if(viewModel.viewState.value is ViewState.IdleState) { // is Success
+                val i = Intent(this, LoginActivity::class.java)
+                startActivity(i)
+                finish()
+            }
+        }
+    }
+
+    private fun subscribeUI() = viewModel.apply {
+
+        viewState.observe(this@RegisterActivity) {
+
+            when(it) {
+                ViewState.LoadingState -> {
+
+                }
+                ViewState.EmptyState -> {
+
+                }
+                is ViewState.ErrorState -> {
+                    val exception: ParrotException = it.error
+                    if (exception is SignInUseCase.SignInInputException) {
+
+                        exception.errors.forEach{
+                            if(it.type == SignInUseCase.SignInInputException.SignInput.NAME) {
+                                register_text_name.error = getString(R.string.isBlankError)
+                            }
+                            if(it.type == SignInUseCase.SignInInputException.SignInput.EMAIL) {
+                                register_text_email.error = getString(R.string.isBlankError)
+                            }
+                            if(it.type == SignInUseCase.SignInInputException.SignInput.PASSWORD) {
+                                register_text_password.error = getString(R.string.isBlankError)
+                            }
+                            if(it.type == SignInUseCase.SignInInputException.SignInput.CONFIRM_PASSWORD) {
+                                register_confirm_text_password.error = getString(R.string.isBlankError)
+                            }
+                        }
+                    } else {
+                        Snackbar.make(Container, exception.errorMessage(this@RegisterActivity), Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
         }
     }
 
