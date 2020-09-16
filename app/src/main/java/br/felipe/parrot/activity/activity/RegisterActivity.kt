@@ -11,12 +11,13 @@ import br.felipe.parrot.activity.viewmodel.SingInViewModel
 import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.core.exception.ParrotException
 import br.felipe.parrot.domain.usecase.SignInUseCase
+import br.felipe.parrot.domain.usecase.SignInUseCase.SignInInputException.SignInput.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_activity.*
 import kotlinx.android.synthetic.main.register_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RegisterActivity: AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<SingInViewModel>()
 
@@ -56,9 +57,14 @@ class RegisterActivity: AppCompatActivity() {
             val registerPassword = register_text_password.editText?.text.toString()
             val registerPasswordConfirm = register_confirm_text_password.editText?.text.toString()
 
+            register_text_name.error = null
+            register_text_email.error = null
+            register_text_password.error = null
+            register_confirm_text_password.error = null
+
             viewModel.signIn(registerName, registerEmail, registerPassword, registerPasswordConfirm)
 
-            if(viewModel.viewState.value is ViewState.IdleState) { // is Success
+            if (viewModel.viewState.value is ViewState.IdleState) { // is Success
                 val i = Intent(this, LoginActivity::class.java)
                 startActivity(i)
                 finish()
@@ -70,7 +76,7 @@ class RegisterActivity: AppCompatActivity() {
 
         viewState.observe(this@RegisterActivity) {
 
-            when(it) {
+            when (it) {
                 ViewState.LoadingState -> {
 
                 }
@@ -81,22 +87,23 @@ class RegisterActivity: AppCompatActivity() {
                     val exception: ParrotException = it.error
                     if (exception is SignInUseCase.SignInInputException) {
 
-                        exception.errors.forEach{
-                            if(it.type == SignInUseCase.SignInInputException.SignInput.NAME) {
-                                register_text_name.error = getString(R.string.isBlankError)
-                            }
-                            if(it.type == SignInUseCase.SignInInputException.SignInput.EMAIL) {
-                                register_text_email.error = getString(R.string.isBlankError)
-                            }
-                            if(it.type == SignInUseCase.SignInInputException.SignInput.PASSWORD) {
-                                register_text_password.error = getString(R.string.isBlankError)
-                            }
-                            if(it.type == SignInUseCase.SignInInputException.SignInput.CONFIRM_PASSWORD) {
-                                register_confirm_text_password.error = getString(R.string.isBlankError)
-                            }
+                        exception.errors.forEach {
+                            if (it.type == NAME) register_text_name.error = getString(R.string.isBlankError)
+
+                            if (it.type == EMAIL) register_text_email.error = getString(R.string.isBlankError)
+
+                            if (it.type == PASSWORD) register_text_password.error = getString(R.string.isBlankError)
+
+                            if (it.type == CONFIRM_PASSWORD) register_confirm_text_password.error = getString(R.string.isBlankError)
+
+                            if (it.type == DEFERENCE_PASSWORD) register_text_password.error = getString(R.string.password_deference)
                         }
                     } else {
-                        Snackbar.make(Container, exception.errorMessage(this@RegisterActivity), Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            Container,
+                            exception.errorMessage(this@RegisterActivity),
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                 }
             }

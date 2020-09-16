@@ -44,5 +44,6 @@
 
     <!-- Input error message -->
     <string name="isBlankError">Campo obrigatório</string>
+    <string name="password_deference">Senhas não conferem</string>
 
 </resources>

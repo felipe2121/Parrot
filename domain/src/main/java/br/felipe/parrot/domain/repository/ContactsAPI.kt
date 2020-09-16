@@ -2,9 +2,12 @@ package br.felipe.parrot.domain.repository
 
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
+import br.felipe.parrot.data.dto.logout.LogoutDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ContactsAPI {
@@ -19,4 +22,9 @@ interface ContactsAPI {
     suspend fun sendLogin(
         @Body login: LoginSendUserDTO
     ): LoginReceiveUserDTO
+
+    @DELETE("logout")
+    suspend fun logout(
+        @Header("token") token: String
+    ): LogoutDTO
 }

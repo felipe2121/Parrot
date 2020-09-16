@@ -2,14 +2,13 @@ package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import br.felipe.parrot.R
 import kotlinx.coroutines.*
-import java.util.*
-import kotlin.concurrent.schedule
 
-class SplashScreenAcitivity: AppCompatActivity() {
+class SplashScreenActivity: AppCompatActivity() {
+
+    // Verificar se o usuario ja esta logado ou nao
 
     val activityScope = CoroutineScope(Dispatchers.Main)
 
@@ -19,7 +18,7 @@ class SplashScreenAcitivity: AppCompatActivity() {
 
         activityScope.launch {
             delay(1500)
-            val intent = Intent(this@SplashScreenAcitivity, LoginActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

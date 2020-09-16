@@ -13,13 +13,38 @@ class UserRepository (
     private val parrotRemoteRepository: ParrotRemoteRepository
 ): ParrotRepository() {
 
+    var TOKEN: String = ""
+
     suspend fun signIn (body: SignInSendUserDTO): ParrotResult<SignInReceiveUserDTO> {
-        return parrotRemoteRepository.sendSingUp(body).onSuccess { parrotLocalRepository.saveSingUpDataUser(it) }
+        return parrotRemoteRepository.sendSignUp(body).onSuccess { parrotLocalRepository.saveSingUpDataUser(it) }
     }
 
-    // change to email and password
+
     suspend fun login (body: LoginSendUserDTO): ParrotResult<LoginReceiveUserDTO> {
         return parrotRemoteRepository.sendLogin(body)
-            .onSuccess { parrotLocalRepository.saveLoginDataUser(it) }
+            .onSuccess {
+                parrotLocalRepository.saveLoginDataUser(it)
+
+                TOKEN = it.token
+
+            }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// change to email and password

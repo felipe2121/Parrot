@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Parrot" >
 
-        <activity android:name=".activity.activity.SplashScreenAcitivity"
+        <activity android:name=".activity.activity.SplashScreenActivity"
             android:theme="@style/SplashScreen">
 
             <intent-filter>

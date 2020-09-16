@@ -3,15 +3,23 @@ package br.felipe.parrot.domain.repository
 import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
+import br.felipe.parrot.data.dto.logout.LogoutDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.domain._config.repository.ParrotRepository
+import retrofit2.http.Header
 
 class ParrotRemoteRepository: ParrotRepository.Remote() {
 
     private val api by retrofit<ContactsAPI>()
 
-    suspend fun sendSingUp(body: SignInSendUserDTO): ParrotResult<SignInReceiveUserDTO> {
+    suspend fun logout(header: String): ParrotResult<LogoutDTO>{
+        return executeRequest(api) {
+            logout(header)
+        }
+    }
+
+    suspend fun sendSignUp(body: SignInSendUserDTO): ParrotResult<SignInReceiveUserDTO> {
         // val result =  api.sendSingUp(body)
         return executeRequest(api) {
             sendSingUp(body)

@@ -10,7 +10,8 @@
     <string name="network_error_connection">Não foi possível conectar. Verifique sua conexão e tente novamente!</string>
     <string name="network_error_canceled">Tente novamente</string>
 
-    <!-- Login error -->
+    <!-- errors -->
     <string name="isBlank_error">Campo obrigatorio</string>
+    <string name="password_deference">Senhas devem ser iguais</string>
 
 </resources>
