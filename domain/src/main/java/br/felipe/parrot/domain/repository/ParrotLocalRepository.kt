@@ -12,7 +12,7 @@ class ParrotLocalRepository(
 ): ParrotRepository.Local() {
 
     suspend fun getAllDataUser(): UserEntity {
-        return userDAO.getAll()
+        return userDAO.getUser()
     }
 
     suspend fun saveSingUpDataUser(singUpUserData: SignInReceiveUserDTO) {

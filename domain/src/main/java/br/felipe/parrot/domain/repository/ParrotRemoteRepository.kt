@@ -13,6 +13,12 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
 
     private val api by retrofit<ContactsAPI>()
 
+    suspend fun sendLogin(body: LoginSendUserDTO): ParrotResult<LoginReceiveUserDTO> {
+        return executeRequest(api) {
+            sendLogin(body)
+        }
+    }
+
     suspend fun logout(header: String): ParrotResult<LogoutDTO>{
         return executeRequest(api) {
             logout(header)
@@ -23,12 +29,6 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
         // val result =  api.sendSingUp(body)
         return executeRequest(api) {
             sendSingUp(body)
-        }
-    }
-
-    suspend fun sendLogin(body: LoginSendUserDTO): ParrotResult<LoginReceiveUserDTO> {
-        return executeRequest(api) {
-            sendLogin(body)
         }
     }
 }

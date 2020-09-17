@@ -4,6 +4,7 @@ import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.core.util.onSuccess
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
+import br.felipe.parrot.data.dto.logout.LogoutDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.domain._config.repository.ParrotRepository
@@ -27,6 +28,13 @@ class UserRepository (
 
                 TOKEN = it.token
 
+            }
+    }
+
+    suspend fun logout(header: String): ParrotResult<LogoutDTO> {
+        return parrotRemoteRepository.logout(header)
+            .onSuccess {
+                parrotLocalRepository.getAllDataUser()
             }
     }
 }

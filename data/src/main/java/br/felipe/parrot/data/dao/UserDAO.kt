@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
 abstract class UserDAO: DAO<UserEntity>() {
 
     @Query("SELECT * FROM users")
-    abstract suspend fun getAll(): UserEntity
+    abstract suspend fun getUser(): UserEntity
 
 }
