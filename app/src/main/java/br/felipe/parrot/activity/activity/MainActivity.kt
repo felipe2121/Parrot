@@ -18,8 +18,6 @@ class MainActivity: AppCompatActivity() {
         setContentView(R.layout.main_activity)
 
         setupUI()
-
-        // contact_list.adapter = contactsListContacts
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -2,6 +2,7 @@ package br.felipe.parrot.domain.repository
 
 import br.felipe.parrot.data.dao.UserDAO
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
+import br.felipe.parrot.data.dto.logout.LogoutDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.entity.UserEntity
 import br.felipe.parrot.data.toEntity
@@ -13,6 +14,10 @@ class ParrotLocalRepository(
 
     suspend fun getAllDataUser(): UserEntity {
         return userDAO.getUser()
+    }
+
+    suspend fun getToken(): String {
+        return userDAO.getUser().token
     }
 
     suspend fun saveSingUpDataUser(singUpUserData: SignInReceiveUserDTO) {

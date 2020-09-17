@@ -14,8 +14,6 @@ class UserRepository (
     private val parrotRemoteRepository: ParrotRemoteRepository
 ): ParrotRepository() {
 
-    var TOKEN: String = ""
-
     suspend fun signIn (body: SignInSendUserDTO): ParrotResult<SignInReceiveUserDTO> {
         return parrotRemoteRepository.sendSignUp(body).onSuccess { parrotLocalRepository.saveSingUpDataUser(it) }
     }
@@ -25,17 +23,15 @@ class UserRepository (
         return parrotRemoteRepository.sendLogin(body)
             .onSuccess {
                 parrotLocalRepository.saveLoginDataUser(it)
-
-                TOKEN = it.token
-
             }
     }
 
-    suspend fun logout(header: String): ParrotResult<LogoutDTO> {
-        return parrotRemoteRepository.logout(header)
-            .onSuccess {
-                parrotLocalRepository.getAllDataUser()
-            }
+    suspend fun logout(): ParrotResult<Any> {
+        val token = parrotLocalRepository.getToken()
+        return parrotRemoteRepository.logout(token)
+            /*.onSuccess {
+                // apagr o banco
+            }*/
     }
 }
 

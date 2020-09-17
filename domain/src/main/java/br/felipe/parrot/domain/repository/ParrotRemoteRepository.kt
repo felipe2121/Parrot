@@ -19,7 +19,7 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
         }
     }
 
-    suspend fun logout(header: String): ParrotResult<LogoutDTO>{
+    suspend fun logout(header: String): ParrotResult<Any> {
         return executeRequest(api) {
             logout(header)
         }
