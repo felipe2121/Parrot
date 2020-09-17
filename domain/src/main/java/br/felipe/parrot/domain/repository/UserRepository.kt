@@ -1,5 +1,6 @@
 package br.felipe.parrot.domain.repository
 
+import android.util.Log
 import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.core.util.onSuccess
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
@@ -29,9 +30,9 @@ class UserRepository (
     suspend fun logout(): ParrotResult<Any> {
         val token = parrotLocalRepository.getToken()
         return parrotRemoteRepository.logout(token)
-            /*.onSuccess {
-                // apagr o banco
-            }*/
+            .onSuccess {
+                Log.d("************", "Sucesso")
+            }
     }
 }
 

@@ -1,5 +1,6 @@
 package br.felipe.parrot.domain.repository
 
+import android.util.Log
 import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO

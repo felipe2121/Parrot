@@ -48,12 +48,6 @@ class LoginActivity : AppCompatActivity() {
             login_text_password.error = null
 
             viewModel.login(inputTextEmail, inputTextPassword)
-
-            if(viewModel.viewState.value is ViewState.IdleState) {
-                val i = Intent(this, MainActivity::class.java)
-                startActivity(i)
-                finish()
-            }
         }
 
         login_register_button.setOnClickListener {
@@ -74,11 +68,15 @@ class LoginActivity : AppCompatActivity() {
                 ViewState.EmptyState -> {
 
                 }
+                ViewState.IdleState -> {
+                    val i = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(i)
+                    finish()
+                }
                 is ViewState.ErrorState -> {
 
                     val exception: ParrotException = it.error
                     if (exception is LoginInputException) {
-
                         exception.errors.forEach{
                             if(it.type == EMAIL) {
                                 login_text_email.error = getString(R.string.isBlankError)

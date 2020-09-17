@@ -26,5 +26,5 @@ interface ContactsAPI {
     @DELETE("logout")
     suspend fun logout(
         @Header("token") token: String
-    ): Any
+    )
 }

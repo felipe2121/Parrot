@@ -7,9 +7,9 @@ import br.felipe.parrot.domain.repository.UserRepository
 
 class LogoutUseCase(
     private val userRepository: UserRepository
-): ParrotUseCase.Completable<Unit, LogoutDTO, Unit>() {
+): ParrotUseCase.Completable<Any, Any, Unit>() {
 
-    suspend fun execute(): ParrotResult<Any> {
+    override suspend fun execute(params: Any?): ParrotResult<Any> {
         return userRepository.logout()
     }
 }
