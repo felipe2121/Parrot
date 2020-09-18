@@ -12,4 +12,5 @@ abstract class UserDAO: DAO<UserEntity>() {
     @Query("SELECT * FROM users")
     abstract suspend fun getUser(): UserEntity
 
+
 }

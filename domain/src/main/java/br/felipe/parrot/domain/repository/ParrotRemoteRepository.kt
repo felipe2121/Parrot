@@ -5,6 +5,8 @@ import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
 import br.felipe.parrot.data.dto.logout.LogoutDTO
+import br.felipe.parrot.data.dto.main.CreateContactReceiveDTO
+import br.felipe.parrot.data.dto.main.CreateContactSendDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.domain._config.repository.ParrotRepository
@@ -30,6 +32,12 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
         // val result =  api.sendSingUp(body)
         return executeRequest(api) {
             sendSingUp(body)
+        }
+    }
+
+    suspend fun sendCreateContact(body: CreateContactSendDTO): ParrotResult<CreateContactReceiveDTO> {
+        return executeRequest(api) {
+            createContact(body)
         }
     }
 }

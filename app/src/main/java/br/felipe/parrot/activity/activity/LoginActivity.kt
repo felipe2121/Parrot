@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.viewmodel.LoginViewModel
@@ -17,6 +19,7 @@ import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInp
 import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInput.PASSWORD
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_activity.*
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.Console
 
@@ -30,22 +33,17 @@ class LoginActivity : AppCompatActivity() {
 
         setUpUI()
         subscribeUI()
-
-        /*lifecycleScope.launch {
-            val response = LoginRemoteRepository().sendSingUp()
-        }*/
     }
 
 
     private fun setUpUI() {
+        login_email_edit_text.addTextChangedListener { login_text_email.error = null }
+        login_password_edit_text.addTextChangedListener { login_text_password.error = null }
 
         login_log_button.setOnClickListener {
 
             val inputTextEmail = login_text_email.editText?.text.toString()
             val inputTextPassword = login_text_password.editText?.text.toString()
-
-            login_text_email.error = null
-            login_text_password.error = null
 
             viewModel.login(inputTextEmail, inputTextPassword)
         }
@@ -61,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
 
         viewState.observe(this@LoginActivity) {
 
-            when(it) {
+            when (it) {
                 ViewState.LoadingState -> {
 
                 }
@@ -77,16 +75,20 @@ class LoginActivity : AppCompatActivity() {
 
                     val exception: ParrotException = it.error
                     if (exception is LoginInputException) {
-                        exception.errors.forEach{
-                            if(it.type == EMAIL) {
+                        exception.errors.forEach {
+                            if (it.type == EMAIL) {
                                 login_text_email.error = getString(R.string.isBlankError)
                             }
-                            if(it.type == PASSWORD) {
+                            if (it.type == PASSWORD) {
                                 login_text_password.error = getString(R.string.isBlankError)
                             }
                         }
                     } else {
-                        Snackbar.make(Container, exception.errorMessage(this@LoginActivity), Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(
+                            Container,
+                            exception.errorMessage(this@LoginActivity),
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                 }
             }

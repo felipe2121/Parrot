@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.observe
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.viewmodel.SingInViewModel
@@ -50,17 +51,17 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
+        register_name_edit_text.addTextChangedListener { register_text_name.error = null }
+        register_email_edit_text.addTextChangedListener { register_text_email.error = null }
+        register_password_edit_text.addTextChangedListener { register_text_password.error = null }
+        register_confirm_password_edit_text.addTextChangedListener { register_confirm_text_password.error = null }
+
         register_button.setOnClickListener {
 
             val registerName = register_text_name.editText?.text.toString()
             val registerEmail = register_text_email.editText?.text.toString()
             val registerPassword = register_text_password.editText?.text.toString()
             val registerPasswordConfirm = register_confirm_text_password.editText?.text.toString()
-
-            register_text_name.error = null
-            register_text_email.error = null
-            register_text_password.error = null
-            register_confirm_text_password.error = null
 
             viewModel.signIn(registerName, registerEmail, registerPassword, registerPasswordConfirm)
 
@@ -88,15 +89,20 @@ class RegisterActivity : AppCompatActivity() {
                     if (exception is SignInUseCase.SignInInputException) {
 
                         exception.errors.forEach {
-                            if (it.type == NAME) register_text_name.error = getString(R.string.isBlankError)
+                            if (it.type == NAME) register_text_name.error =
+                                getString(R.string.isBlankError)
 
-                            if (it.type == EMAIL) register_text_email.error = getString(R.string.isBlankError)
+                            if (it.type == EMAIL) register_text_email.error =
+                                getString(R.string.isBlankError)
 
-                            if (it.type == PASSWORD) register_text_password.error = getString(R.string.isBlankError)
+                            if (it.type == PASSWORD) register_text_password.error =
+                                getString(R.string.isBlankError)
 
-                            if (it.type == CONFIRM_PASSWORD) register_confirm_text_password.error = getString(R.string.isBlankError)
+                            if (it.type == CONFIRM_PASSWORD) register_confirm_text_password.error =
+                                getString(R.string.isBlankError)
 
-                            if (it.type == DEFERENCE_PASSWORD) register_text_password.error = getString(R.string.password_deference)
+                            if (it.type == DEFERENCE_PASSWORD) register_text_password.error =
+                                getString(R.string.password_deference)
                         }
                     } else {
                         Snackbar.make(

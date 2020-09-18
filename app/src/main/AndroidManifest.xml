@@ -28,7 +28,7 @@
 
         <activity android:name=".activity.activity.MainActivity"/>
 
-        <activity android:name=".activity.activity.NewContact" />
+        <activity android:name=".activity.activity.CreateContact" />
 
     </application>
 

@@ -1,14 +1,15 @@
 package br.felipe.parrot.domain.repository
 
+import androidx.annotation.RequiresPermission
+import androidx.annotation.RequiresPermission.*
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
 import br.felipe.parrot.data.dto.logout.LogoutDTO
+import br.felipe.parrot.data.dto.main.CreateContactReceiveDTO
+import br.felipe.parrot.data.dto.main.CreateContactSendDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
-import retrofit2.http.Body
-import retrofit2.http.DELETE
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ContactsAPI {
 
@@ -27,4 +28,9 @@ interface ContactsAPI {
     suspend fun logout(
         @Header("token") token: String
     )
+
+    @POST("contacts")
+    suspend fun createContact(
+        @Body newContact: CreateContactSendDTO
+    ): CreateContactReceiveDTO
 }

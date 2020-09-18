@@ -5,23 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.felipe.parrot.core.ViewState
-import br.felipe.parrot.data.dto.login.LoginSendUserDTO
-import br.felipe.parrot.domain.usecase.LoginUseCase
-import br.felipe.parrot.domain.usecase.LoginUseCase.ParamsLogin
+import br.felipe.parrot.data.dto.main.CreateContactSendDTO
+import br.felipe.parrot.domain.usecase.CreateContactUseCase
+import br.felipe.parrot.domain.usecase.CreateContactUseCase.ParamsCreateContact
 import kotlinx.coroutines.launch
 
-class LoginViewModel(
-    private val loginUseCase: LoginUseCase
-    // another useCase, to know if de user is already login
-): ViewModel() {
+class CreateContactViewModel(
+    private val createContactUseCase: CreateContactUseCase
+):ViewModel() {
 
     private val _viewState = MutableLiveData<ViewState>()
     val viewState = _viewState as LiveData<ViewState>
 
-    fun login(inputLoginEmail: String, inputLoginPassword: String) = viewModelScope.launch {
+    fun createContact(inputNewContactName: String, inputNewContactEmail: String, inputNewContactPhone: String) = viewModelScope.launch {
 
-        val loginInput = LoginSendUserDTO(inputLoginEmail, inputLoginPassword)
-        loginUseCase(ParamsLogin(loginInput))
+        val newContactInput = CreateContactSendDTO(inputNewContactName, inputNewContactEmail, inputNewContactPhone)
+        createContactUseCase(ParamsCreateContact(newContactInput))
             .onStarted {
                 _viewState.value = ViewState.LoadingState
             }.onSuccess {
@@ -33,20 +32,3 @@ class LoginViewModel(
             }.execute()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

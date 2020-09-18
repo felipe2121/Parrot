@@ -6,6 +6,8 @@ import br.felipe.parrot.core.util.onSuccess
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
 import br.felipe.parrot.data.dto.logout.LogoutDTO
+import br.felipe.parrot.data.dto.main.CreateContactReceiveDTO
+import br.felipe.parrot.data.dto.main.CreateContactSendDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.domain._config.repository.ParrotRepository
@@ -32,6 +34,13 @@ class UserRepository (
         return parrotRemoteRepository.logout(token)
             .onSuccess {
                 Log.d("************", "Sucesso")
+            }
+    }
+
+    suspend fun createContact(body: CreateContactSendDTO): ParrotResult<CreateContactReceiveDTO> {
+        return parrotRemoteRepository.sendCreateContact(body)
+            .onSuccess {
+                //parrotLocalRepository.saveLoginDataUser(it)
             }
     }
 }
