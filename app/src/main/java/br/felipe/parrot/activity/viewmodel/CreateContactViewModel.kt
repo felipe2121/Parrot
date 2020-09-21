@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.felipe.parrot.core.ViewState
-import br.felipe.parrot.data.dto.main.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.createcontact.CreateContactSendDTO
 import br.felipe.parrot.domain.usecase.CreateContactUseCase
 import br.felipe.parrot.domain.usecase.CreateContactUseCase.ParamsCreateContact
 import kotlinx.coroutines.launch
@@ -19,7 +19,12 @@ class CreateContactViewModel(
 
     fun createContact(inputNewContactName: String, inputNewContactEmail: String, inputNewContactPhone: String) = viewModelScope.launch {
 
-        val newContactInput = CreateContactSendDTO(inputNewContactName, inputNewContactEmail, inputNewContactPhone)
+        val newContactInput =
+            CreateContactSendDTO(
+                inputNewContactName,
+                inputNewContactEmail,
+                inputNewContactPhone
+            )
         createContactUseCase(ParamsCreateContact(newContactInput))
             .onStarted {
                 _viewState.value = ViewState.LoadingState

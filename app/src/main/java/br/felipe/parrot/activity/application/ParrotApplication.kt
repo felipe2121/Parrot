@@ -1,7 +1,6 @@
 package br.felipe.parrot.activity.application
 
 import android.app.Application
-import android.util.Log
 import br.felipe.parrot.activity.viewmodel.CreateContactViewModel
 import br.felipe.parrot.activity.viewmodel.LoginViewModel
 import br.felipe.parrot.activity.viewmodel.MainViewModel
@@ -11,10 +10,7 @@ import br.felipe.parrot.data._config.ParrotDatabase.Companion.dropDatabase
 import br.felipe.parrot.domain.repository.ParrotRemoteRepository
 import br.felipe.parrot.domain.repository.UserRepository
 import br.felipe.parrot.domain.repository.ParrotLocalRepository
-import br.felipe.parrot.domain.usecase.CreateContactUseCase
-import br.felipe.parrot.domain.usecase.LoginUseCase
-import br.felipe.parrot.domain.usecase.LogoutUseCase
-import br.felipe.parrot.domain.usecase.SignInUseCase
+import br.felipe.parrot.domain.usecase.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
@@ -48,12 +44,13 @@ class ParrotApplication:Application(), DeleteDataBase {
                 factory { SignInUseCase(userRepository = get()) }
                 factory { LogoutUseCase(userRepository = get()) }
                 factory { CreateContactUseCase(userRepository = get()) }
+                factory { ListingContactsUseCase(userRepository = get()) }
             }
 
             val viewModelModule = module {
                 factory { LoginViewModel(loginUseCase = get()) }
                 factory { SingInViewModel(singIn = get()) }
-                factory { MainViewModel(logoutUseCase = get()) }
+                factory { MainViewModel(logoutUseCase = get(), listingContactsUseCase = get()) }
                 factory { CreateContactViewModel(createContactUseCase = get()) }
             }
 

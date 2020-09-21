@@ -3,8 +3,8 @@ package br.felipe.parrot.domain.usecase
 import br.felipe.parrot.core.exception.ParrotException
 import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.core.util.StringWrapper
-import br.felipe.parrot.data.dto.main.CreateContactReceiveDTO
-import br.felipe.parrot.data.dto.main.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.createcontact.CreateContactReceiveDTO
+import br.felipe.parrot.data.dto.main.createcontact.CreateContactSendDTO
 import br.felipe.parrot.domain.R
 import br.felipe.parrot.domain._config.usecase.ParrotUseCase
 import br.felipe.parrot.domain.repository.UserRepository

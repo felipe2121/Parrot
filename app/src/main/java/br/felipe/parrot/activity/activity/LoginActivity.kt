@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
 
             when (it) {
                 ViewState.LoadingState -> {
-
+                    login_progress_bar.visibility =  View.VISIBLE
                 }
                 ViewState.EmptyState -> {
 

@@ -2,8 +2,10 @@ package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.observe
@@ -80,16 +82,18 @@ class CreateContact : AppCompatActivity() {
 
             when (it) {
                 ViewState.LoadingState -> {
-
+                    create_contact_progress_bar.visibility = View.VISIBLE
                 }
                 ViewState.EmptyState -> {
 
                 }
                 ViewState.IdleState -> {
-
+                    val i = Intent(this@CreateContact, MainActivity::class.java)
+                    startActivity(i)
+                    finish()
                 }
                 is ViewState.ErrorState -> {
-
+                    Log.d("***********", "erro")
                     val exception: ParrotException = it.error
                     if (exception is CreateContactUseCase.CreateContactInputException) {
                         exception.errors.forEach {

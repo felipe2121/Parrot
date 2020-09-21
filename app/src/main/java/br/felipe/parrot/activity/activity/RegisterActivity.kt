@@ -2,8 +2,10 @@ package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.observe
@@ -65,11 +67,6 @@ class RegisterActivity : AppCompatActivity() {
 
             viewModel.signIn(registerName, registerEmail, registerPassword, registerPasswordConfirm)
 
-            if (viewModel.viewState.value is ViewState.IdleState) { // is Success
-                val i = Intent(this, LoginActivity::class.java)
-                startActivity(i)
-                finish()
-            }
         }
     }
 
@@ -79,10 +76,16 @@ class RegisterActivity : AppCompatActivity() {
 
             when (it) {
                 ViewState.LoadingState -> {
-
+                    Log.d("**********", "Loading...")
+                    register_progress_bar.visibility =  View.VISIBLE
                 }
                 ViewState.EmptyState -> {
 
+                }
+                ViewState.IdleState -> {
+                    val i = Intent(this@RegisterActivity, LoginActivity::class.java)
+                    startActivity(i)
+                    finish()
                 }
                 is ViewState.ErrorState -> {
                     val exception: ParrotException = it.error

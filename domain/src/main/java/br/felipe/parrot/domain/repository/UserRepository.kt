@@ -5,9 +5,10 @@ import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.core.util.onSuccess
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
-import br.felipe.parrot.data.dto.logout.LogoutDTO
-import br.felipe.parrot.data.dto.main.CreateContactReceiveDTO
-import br.felipe.parrot.data.dto.main.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.createcontact.CreateContactReceiveDTO
+import br.felipe.parrot.data.dto.main.createcontact.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.main.ContactDTO
+import br.felipe.parrot.data.dto.main.main.ContactResponseDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.domain._config.repository.ParrotRepository
@@ -38,10 +39,16 @@ class UserRepository (
     }
 
     suspend fun createContact(body: CreateContactSendDTO): ParrotResult<CreateContactReceiveDTO> {
-        return parrotRemoteRepository.sendCreateContact(body)
+        val token = parrotLocalRepository.getToken()
+        return parrotRemoteRepository.sendCreateContact(token, body)
             .onSuccess {
                 //parrotLocalRepository.saveLoginDataUser(it)
             }
+    }
+
+    suspend fun getContacts(): ParrotResult<List<ContactDTO>> {
+        val token = parrotLocalRepository.getToken()
+        return parrotRemoteRepository.getContactsUser(token)
     }
 }
 

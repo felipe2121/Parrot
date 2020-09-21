@@ -1,16 +1,16 @@
 package br.felipe.parrot.domain.repository
 
-import android.util.Log
 import br.felipe.parrot.core.util.ParrotResult
+import br.felipe.parrot.core.util.map
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
-import br.felipe.parrot.data.dto.logout.LogoutDTO
-import br.felipe.parrot.data.dto.main.CreateContactReceiveDTO
-import br.felipe.parrot.data.dto.main.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.createcontact.CreateContactReceiveDTO
+import br.felipe.parrot.data.dto.main.createcontact.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.main.ContactDTO
+import br.felipe.parrot.data.dto.main.main.ContactResponseDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.domain._config.repository.ParrotRepository
-import retrofit2.http.Header
 
 class ParrotRemoteRepository: ParrotRepository.Remote() {
 
@@ -35,9 +35,16 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
         }
     }
 
-    suspend fun sendCreateContact(body: CreateContactSendDTO): ParrotResult<CreateContactReceiveDTO> {
+    suspend fun sendCreateContact(header: String, body: CreateContactSendDTO): ParrotResult<CreateContactReceiveDTO> {
         return executeRequest(api) {
-            createContact(body)
+            createContact(header, body)
         }
+    }
+
+    suspend fun getContactsUser(token: String): ParrotResult<List<ContactDTO>> {
+        return executeRequest(api) { getContacts(token) }
+            .map {
+                it.contact?: emptyList()
+            }
     }
 }

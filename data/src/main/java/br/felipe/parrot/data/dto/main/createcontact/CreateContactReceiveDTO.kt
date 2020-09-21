@@ -1,4 +1,4 @@
-package br.felipe.parrot.data.dto.main
+package br.felipe.parrot.data.dto.main.createcontact
 
 data class CreateContactReceiveDTO (
     var id: String = "",

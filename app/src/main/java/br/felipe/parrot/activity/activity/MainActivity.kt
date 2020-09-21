@@ -2,6 +2,7 @@ package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity: AppCompatActivity() {
 
-    private val viewModel by viewModel<MainViewModel>()
+    private val logoutViewModel by viewModel<MainViewModel>()
     private val logout by inject<DeleteDataBase>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +32,8 @@ class MainActivity: AppCompatActivity() {
 
         setupUI()
         subscribeUI()
+
+        logoutViewModel.listing()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -41,7 +44,7 @@ class MainActivity: AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if(item.itemId == R.id.action_logout) {
-            viewModel.logout()
+            logoutViewModel.logout()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -56,11 +59,11 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
-    private fun subscribeUI() = viewModel.apply {
+    private fun subscribeUI() = logoutViewModel.apply {
 
         eventLogout.observeEvent(this@MainActivity) {
             lifecycleScope.launch {
-                logout()
+                logout.inValidate() /* Changed */
                 val i = Intent(this@MainActivity, LoginActivity::class.java)
                 startActivity(i)
             }
@@ -79,6 +82,28 @@ class MainActivity: AppCompatActivity() {
 
                 }
                 is ViewState.ErrorState -> {
+                    val exception: ParrotException = it.error
+                    Snackbar.make(Container, exception.errorMessage(this@MainActivity), Snackbar.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        viewStateListing.observe(this@MainActivity) {
+
+            when(it) {
+                ViewState.LoadingState -> {
+
+                }
+                ViewState.EmptyState -> {
+
+                }
+                ViewState.IdleState -> {
+                    Log.d("**********", "Listing complete!")
+                }
+                is ViewState.ErrorState -> {
+
+                    Log.d("**********", "Listing fail")
+
                     val exception: ParrotException = it.error
                     Snackbar.make(Container, exception.errorMessage(this@MainActivity), Snackbar.LENGTH_LONG).show()
                 }
