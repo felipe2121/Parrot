@@ -42,9 +42,8 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
     }
 
     suspend fun getContactsUser(token: String): ParrotResult<List<ContactDTO>> {
-        return executeRequest(api) { getContacts(token) }
-            .map {
-                it.contact?: emptyList()
-            }
+        return executeRequest(api) {
+            getContacts(token)
+        }
     }
 }

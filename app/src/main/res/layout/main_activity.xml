@@ -31,4 +31,10 @@
         app:srcCompat="@drawable/ic_add_filled"
         tools:ignore="RtlHardcoded" />
 
+    <FrameLayout
+        android:id="@+id/conatiner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

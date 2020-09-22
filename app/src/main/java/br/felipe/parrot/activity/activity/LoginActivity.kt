@@ -73,6 +73,8 @@ class LoginActivity : AppCompatActivity() {
                 }
                 is ViewState.ErrorState -> {
 
+                    login_progress_bar.visibility =  View.GONE
+
                     val exception: ParrotException = it.error
                     if (exception is LoginInputException) {
                         exception.errors.forEach {
@@ -94,23 +96,4 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
-    /**Error message*/
-    /*// Set error text
-    passwordLayout.error = getString(R.string.error)
-
-    // Clear error text
-    passwordLayout.error = null */
-
-    /**Snackbar*/
-    /*val contextView = findViewById<View>(R.id.context_view)
-
-    snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_SHORT)
-    .show()*/
-
-    /*Snackbar.make(contextView, R.string.text_label, Snackbar.LENGTH_LONG)
-    .setAction(R.string.action_text) {
-        // Responds to click on the action
-    }
-    .show()*/
 }

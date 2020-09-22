@@ -93,7 +93,9 @@ class CreateContact : AppCompatActivity() {
                     finish()
                 }
                 is ViewState.ErrorState -> {
-                    Log.d("***********", "erro")
+
+                    create_contact_progress_bar.visibility = View.GONE
+
                     val exception: ParrotException = it.error
                     if (exception is CreateContactUseCase.CreateContactInputException) {
                         exception.errors.forEach {

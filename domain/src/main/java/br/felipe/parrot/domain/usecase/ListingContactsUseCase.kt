@@ -5,6 +5,7 @@ import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.core.util.map
 import br.felipe.parrot.data.dto.main.createcontact.CreateContactReceiveDTO
 import br.felipe.parrot.data.dto.main.main.ContactDTO
+import br.felipe.parrot.data.toUI
 import br.felipe.parrot.domain._config.usecase.ParrotUseCase
 import br.felipe.parrot.domain.repository.UserRepository
 
@@ -13,6 +14,8 @@ class ListingContactsUseCase(
 ): ParrotUseCase.Completable<Any, List<ContactDTO>, Unit>() {
 
     override suspend fun execute(params: Any?): ParrotResult<List<ContactDTO>> {
-        return userRepository.getContacts()
+        return userRepository.getContacts().map {
+            it.toUI()
+        }
     }
 }

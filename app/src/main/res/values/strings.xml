@@ -25,6 +25,9 @@
     <string name="main_toolBar_name">Contatos</string>
     <string name="AddContactFragment">Novo Contato</string>
     <string name="menu_item">Sair</string>
+    <string name="alert_logout">Deseja realmente sair da sua conta?</string>
+    <string name="alert_logout_cancel">CANCELAR</string>
+    <string name="alert_logout_confirm">COMFIRMAR</string>
 
     <!-- add new contact screen -->
     <string name="add_new_toolbar_name">Novo Contato</string>

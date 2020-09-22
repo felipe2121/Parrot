@@ -5,16 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.Contact
+import br.felipe.parrot.activity.listener.ContactClickListener
 import br.felipe.parrot.activity.view.holder.ContactViewHolder
 
 class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
     private val items: MutableList<Contact> = mutableListOf()
+    var contactClickListener: ContactClickListener? = null
 
     // receive list of items, clean and add new ones
     fun refresh(newItems: List<Contact>) {
         items.clear()
         items.addAll(newItems)
+        notifyDataSetChanged()
     }
 
     // Return who many items in the list
@@ -31,6 +34,6 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position], contactClickListener)
     }
 }

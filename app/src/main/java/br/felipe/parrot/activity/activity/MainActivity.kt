@@ -5,26 +5,34 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.RecyclerView
 import br.felipe.parrot.R
+import br.felipe.parrot.activity.adapter.ContactsListAdapter
 import br.felipe.parrot.activity.application.DeleteDataBase
 import br.felipe.parrot.activity.viewmodel.MainViewModel
 import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.core.exception.ParrotException
 import br.felipe.parrot.core.util.observeEvent
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_activity.*
 import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.main_contact_list.*
+import kotlinx.coroutines.NonCancellable.cancel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity: AppCompatActivity() {
 
-    private val logoutViewModel by viewModel<MainViewModel>()
+    private val viewModel by viewModel<MainViewModel>()
     private val logout by inject<DeleteDataBase>()
+
+    private val contactsAdapter by lazy { ContactsListAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +41,7 @@ class MainActivity: AppCompatActivity() {
         setupUI()
         subscribeUI()
 
-        logoutViewModel.listing()
+        viewModel.listing()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -44,13 +52,27 @@ class MainActivity: AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if(item.itemId == R.id.action_logout) {
-            logoutViewModel.logout()
+
+            /*MaterialAlertDialogBuilder(this)
+                .setMessage(resources.getString(R.string.alert_logout))
+                .setNegativeButton(resources.getString(R.string.alert_logout_cancel)) { dialog, which ->
+
+                }
+                .setPositiveButton(resources.getString(R.string.alert_logout_confirm)) { dialog, which ->
+                    viewModel.logout()
+                }
+                .show()*/
+
+            viewModel.logout()
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun setupUI() {
         setSupportActionBar(main_toolbar)
+
+        /*contact_list.adapter = contactsAdapter
+        contactsAdapter.contactClickListener = viewModel*/
 
         floating_action_button.setOnClickListener {
             val i = Intent(this, CreateContact::class.java)
@@ -59,7 +81,7 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
-    private fun subscribeUI() = logoutViewModel.apply {
+    private fun subscribeUI() = viewModel.apply {
 
         eventLogout.observeEvent(this@MainActivity) {
             lifecycleScope.launch {
@@ -69,11 +91,11 @@ class MainActivity: AppCompatActivity() {
             }
         }
 
-        viewState.observe(this@MainActivity) {
+        viewStateLogout.observe(this@MainActivity) {
 
             when(it) {
                 ViewState.LoadingState -> {
-      
+
                 }
                 ViewState.EmptyState -> {
 
@@ -92,12 +114,16 @@ class MainActivity: AppCompatActivity() {
 
             when(it) {
                 ViewState.LoadingState -> {
-
+                    /*progress.visibility = View.VISIBLE
+                    if(contactsAdapter.itemCount != 0) {
+                        progress.visibility = View.GONE
+                    }*/
                 }
                 ViewState.EmptyState -> {
 
                 }
                 ViewState.IdleState -> {
+
                     Log.d("**********", "Listing complete!")
                 }
                 is ViewState.ErrorState -> {
