@@ -27,7 +27,7 @@ class SingInViewModel(
 
         singIn(SignInUseCase.ParamsSignIn(signInInput))
             .onStarted {
-
+                _viewState.value = ViewState.LoadingState
             }.onSuccess {
                 _viewState.value = ViewState.IdleState
             }.onFailure {

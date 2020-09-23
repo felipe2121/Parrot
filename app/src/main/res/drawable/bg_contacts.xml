@@ -8,6 +8,4 @@
     <stroke
         android:color="@color/bg_contacts"
         android:width="2dp" />
-
-
 </shape>

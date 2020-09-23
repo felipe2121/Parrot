@@ -1,4 +1,4 @@
-package br.felipe.parrot.activity.listener
+package br.felipe.parrot.activity.view.listener
 
 import androidx.lifecycle.MutableLiveData
 import br.felipe.parrot.core.util.Event
@@ -8,7 +8,7 @@ interface ContactClickListener {
 
     val onContactClicked: MutableLiveData<Event.Data<Contact>>
 
-    fun onClickArticle (article: Contact) {
-        onContactClicked.value = Event.Data(article)
+    fun onClickContact (contact: Contact) {
+        onContactClicked.value = Event.Data(contact)
     }
 }

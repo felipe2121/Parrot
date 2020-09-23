@@ -8,3 +8,8 @@ data class Contact(
     var email: String = "",
     var phone: String = ""
 )
+
+/***
+ * Implementes uma interface que possui uma funcao
+ * que retornar um booleen para saber se é um header ou nao.
+ * ***/

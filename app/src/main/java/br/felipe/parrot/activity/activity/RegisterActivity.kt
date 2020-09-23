@@ -76,7 +76,6 @@ class RegisterActivity : AppCompatActivity() {
 
             when (it) {
                 ViewState.LoadingState -> {
-                    Log.d("**********", "Loading...")
                     register_progress_bar.visibility =  View.VISIBLE
                 }
                 ViewState.EmptyState -> {

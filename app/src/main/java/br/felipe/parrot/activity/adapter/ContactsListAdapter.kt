@@ -4,11 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.felipe.parrot.R
-import br.felipe.parrot.activity.Contact
-import br.felipe.parrot.activity.listener.ContactClickListener
+import br.felipe.parrot.activity.view.listener.ContactClickListener
 import br.felipe.parrot.activity.view.holder.ContactViewHolder
+import br.felipe.parrot.activity.view.holder.ContactViewHolderBase
+import br.felipe.parrot.activity.view.holder.ContactViewHolderHeader
+import br.felipe.parrot.data.ui.Contact
 
-class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
+class ContactsListAdapter(
+    private val adapterLetter :AdapterLetter
+) : RecyclerView.Adapter<ContactViewHolderBase>() {
+
+    enum class AdapterLetter { FIRST, OTHER }
+    enum class ViewType(val id: Int) { FIRST_LETTER(0), OTHER(1) }
 
     private val items: MutableList<Contact> = mutableListOf()
     var contactClickListener: ContactClickListener? = null
@@ -21,19 +28,31 @@ class ContactsListAdapter : RecyclerView.Adapter<ContactViewHolder>() {
     }
 
     // Return who many items in the list
-    override fun getItemCount(): Int {
-        return items.size
+    override fun getItemCount(): Int = items.size
+
+    override fun getItemViewType(position: Int): Int {
+        return when(adapterLetter) {
+            AdapterLetter.FIRST -> if (position == 0) ViewType.FIRST_LETTER.id else ViewType.OTHER.id
+            AdapterLetter.OTHER -> ViewType.OTHER.id
+        }
     }
 
     // Return items of the list
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        return ContactViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.main_view_holder, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolderBase {
+
+        return when(viewType) {
+            ViewType.FIRST_LETTER.id -> ContactViewHolderHeader(
+                LayoutInflater.from(parent.context).inflate(
+                R.layout.main_view_holder, parent, false))
+            else -> ContactViewHolder(
+                LayoutInflater.from(parent.context).inflate(
+                    R.layout.main_view_holder, parent, false)
+            )
+        }
+        // return ContactViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_view_holder, parent, false))
     }
 
-    override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ContactViewHolderBase, position: Int) {
         holder.bind(items[position], contactClickListener)
     }
 }

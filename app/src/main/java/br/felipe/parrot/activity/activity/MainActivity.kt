@@ -31,8 +31,7 @@ class MainActivity: AppCompatActivity() {
 
     private val viewModel by viewModel<MainViewModel>()
     private val logout by inject<DeleteDataBase>()
-
-    private val contactsAdapter by lazy { ContactsListAdapter() }
+    private val contactListAdapter by lazy { ContactsListAdapter(ContactsListAdapter.AdapterLetter.FIRST) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,8 +70,8 @@ class MainActivity: AppCompatActivity() {
     private fun setupUI() {
         setSupportActionBar(main_toolbar)
 
-        /*contact_list.adapter = contactsAdapter
-        contactsAdapter.contactClickListener = viewModel*/
+        contact_list.adapter = contactListAdapter
+        contactListAdapter.contactClickListener = viewModel
 
         floating_action_button.setOnClickListener {
             val i = Intent(this, CreateContact::class.java)
@@ -110,6 +109,8 @@ class MainActivity: AppCompatActivity() {
             }
         }
 
+
+
         viewStateListing.observe(this@MainActivity) {
 
             when(it) {
@@ -123,7 +124,6 @@ class MainActivity: AppCompatActivity() {
 
                 }
                 ViewState.IdleState -> {
-
                     Log.d("**********", "Listing complete!")
                 }
                 is ViewState.ErrorState -> {
