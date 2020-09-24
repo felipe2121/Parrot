@@ -7,14 +7,14 @@ import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
 import br.felipe.parrot.domain.R
 import br.felipe.parrot.domain._config.usecase.ParrotUseCase
-import br.felipe.parrot.domain.repository.UserRepository
+import br.felipe.parrot.domain.repository.ParrotRepository
 import br.felipe.parrot.domain.usecase.LoginUseCase.*
 import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.ErrorType
 import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInput.EMAIL
 import br.felipe.parrot.domain.usecase.LoginUseCase.LoginInputException.LoginInput.PASSWORD
 
 class LoginUseCase (
-    private val userRepository: UserRepository
+    private val parrotRepository: ParrotRepository
 ):ParrotUseCase.Completable<ParamsLogin, LoginReceiveUserDTO, Unit>() {
 
     data class ParamsLogin(
@@ -36,7 +36,7 @@ class LoginUseCase (
 
         if(params.userInputLogin.password.isBlank()) errors.add(ErrorType(PASSWORD, StringWrapper(R.string.isBlank_error)))
 
-        return if(errors.isEmpty()) userRepository.login(params.userInputLogin)
+        return if(errors.isEmpty()) parrotRepository.login(params.userInputLogin)
         else ParrotResult.failure(LoginInputException(errors))
     }
 }

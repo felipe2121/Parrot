@@ -7,14 +7,13 @@ import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.domain.R
 import br.felipe.parrot.domain._config.usecase.ParrotUseCase
-import br.felipe.parrot.domain.repository.UserRepository
+import br.felipe.parrot.domain.repository.ParrotRepository
 import br.felipe.parrot.domain.usecase.SignInUseCase.ParamsSignIn
-import br.felipe.parrot.domain.usecase.SignInUseCase.SignInInputException
 import br.felipe.parrot.domain.usecase.SignInUseCase.SignInInputException.ErrorType
 import br.felipe.parrot.domain.usecase.SignInUseCase.SignInInputException.SignInput.*
 
 class SignInUseCase(
-    private val userRepository: UserRepository
+    private val parrotRepository: ParrotRepository
 ) : ParrotUseCase.Completable<ParamsSignIn, SignInReceiveUserDTO, Unit>() {
 
     data class ParamsSignIn(
@@ -64,7 +63,7 @@ class SignInUseCase(
             ErrorType(DEFERENCE_PASSWORD, StringWrapper(R.string.password_deference))
         )
 
-        return if (errors.isEmpty()) userRepository.signIn((params.userInputSignIn))
+        return if (errors.isEmpty()) parrotRepository.signIn((params.userInputSignIn))
         else ParrotResult.failure(SignInInputException(errors))
     }
 }

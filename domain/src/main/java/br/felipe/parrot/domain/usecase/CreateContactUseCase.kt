@@ -7,13 +7,13 @@ import br.felipe.parrot.data.dto.main.createcontact.CreateContactReceiveDTO
 import br.felipe.parrot.data.dto.main.createcontact.CreateContactSendDTO
 import br.felipe.parrot.domain.R
 import br.felipe.parrot.domain._config.usecase.ParrotUseCase
-import br.felipe.parrot.domain.repository.UserRepository
+import br.felipe.parrot.domain.repository.ParrotRepository
 import br.felipe.parrot.domain.usecase.CreateContactUseCase.CreateContactInputException.ErrorType
 import br.felipe.parrot.domain.usecase.CreateContactUseCase.CreateContactInputException.NewContactInput.*
 import br.felipe.parrot.domain.usecase.CreateContactUseCase.ParamsCreateContact
 
 class CreateContactUseCase(
-    private val userRepository: UserRepository
+    private val parrotRepository: ParrotRepository
 ): ParrotUseCase.Completable<ParamsCreateContact, CreateContactReceiveDTO, Unit>() {
 
     data class ParamsCreateContact(
@@ -35,7 +35,7 @@ class CreateContactUseCase(
         if(params.newContactInput.email.isBlank()) errors.add(ErrorType(EMAIL, StringWrapper(R.string.isBlank_error)))
         if(params.newContactInput.phone.isBlank()) errors.add(ErrorType(PHONE, StringWrapper(R.string.isBlank_error)))
 
-        return if(errors.isEmpty()) userRepository.createContact(params.newContactInput)
+        return if(errors.isEmpty()) parrotRepository.createContact(params.newContactInput)
         else ParrotResult.failure(CreateContactInputException(errors))
     }
 }

@@ -7,15 +7,16 @@ import br.felipe.parrot.activity.viewmodel.MainViewModel
 import br.felipe.parrot.activity.viewmodel.SingInViewModel
 import br.felipe.parrot.data._config.ParrotDatabase
 import br.felipe.parrot.data._config.ParrotDatabase.Companion.dropDatabase
+import br.felipe.parrot.data.dao.ContactDAO
 import br.felipe.parrot.domain.repository.ParrotRemoteRepository
-import br.felipe.parrot.domain.repository.UserRepository
+import br.felipe.parrot.domain.repository.ParrotRepository
 import br.felipe.parrot.domain.repository.ParrotLocalRepository
 import br.felipe.parrot.domain.usecase.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
-class ParrotApplication:Application(), DeleteDataBase {
+class ParrotApplication: Application(), DeleteDataBase {
 
     override fun onCreate() {
         super.onCreate()
@@ -31,20 +32,21 @@ class ParrotApplication:Application(), DeleteDataBase {
             val daoModule = module {
                 single { ParrotDatabase.getInstance(get()) }
                 single { get<ParrotDatabase>().userDAO }
+                single { get<ParrotDatabase>().contactDAO }
             }
 
             val repositoryModule = module {
                 factory { ParrotRemoteRepository() }
-                factory { ParrotLocalRepository(userDAO = get()) }
-                factory { UserRepository(parrotLocalRepository = get(), parrotRemoteRepository = get()) }
+                factory { ParrotLocalRepository(userDAO = get(), contactDAO = get()) }
+                factory { ParrotRepository(parrotLocalRepository = get(), parrotRemoteRepository = get()) }
             }
 
             val useCaseModule = module {
-                factory { LoginUseCase(userRepository = get()) }
-                factory { SignInUseCase(userRepository = get()) }
-                factory { LogoutUseCase(userRepository = get()) }
-                factory { CreateContactUseCase(userRepository = get()) }
-                factory { ListingContactsUseCase(userRepository = get()) }
+                factory { LoginUseCase(parrotRepository = get()) }
+                factory { SignInUseCase(parrotRepository = get()) }
+                factory { LogoutUseCase(parrotRepository = get()) }
+                factory { CreateContactUseCase(parrotRepository = get()) }
+                factory { ListingContactsUseCase(parrotRepository = get()) }
             }
 
             val viewModelModule = module {

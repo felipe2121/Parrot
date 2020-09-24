@@ -109,16 +109,22 @@ class MainActivity: AppCompatActivity() {
             }
         }
 
+        contacts.observe(this@MainActivity) {
+            contactListAdapter.refresh(it)
+        }
 
+        onContactClicked.observeEvent(this@MainActivity) {
+
+        }
 
         viewStateListing.observe(this@MainActivity) {
 
             when(it) {
                 ViewState.LoadingState -> {
-                    /*progress.visibility = View.VISIBLE
-                    if(contactsAdapter.itemCount != 0) {
+                    progress.visibility = View.VISIBLE
+                    if(contactListAdapter.itemCount != 0) {
                         progress.visibility = View.GONE
-                    }*/
+                    }
                 }
                 ViewState.EmptyState -> {
 

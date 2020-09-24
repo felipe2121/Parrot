@@ -3,6 +3,7 @@ package br.felipe.parrot.data
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.main.main.ContactDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
+import br.felipe.parrot.data.entity.ContactEntity
 import br.felipe.parrot.data.entity.UserEntity
 import br.felipe.parrot.data.ui.Contact
 
@@ -21,13 +22,9 @@ fun LoginReceiveUserDTO.toEntity() = UserEntity(
     token = this.token
 )
 
-fun List<ContactDTO>.toUI(): List<ContactDTO> {
-    return this.map {
-        it.toUI()
-    }
-}
+fun List<ContactEntity>.toUI() = map { it.toUI() }
 
-fun ContactDTO.toUI() = ContactDTO(
+fun ContactEntity.toUI() = Contact(
     id = this.id ?: "",
     userId = this.userId ?: "",
     name = this.name ?: "",

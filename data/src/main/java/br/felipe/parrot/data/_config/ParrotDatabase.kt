@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.felipe.parrot.data.BuildConfig
+import br.felipe.parrot.data.dao.ContactDAO
 import br.felipe.parrot.data.dao.UserDAO
+import br.felipe.parrot.data.entity.ContactEntity
 import br.felipe.parrot.data.entity.UserEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -16,7 +18,8 @@ import kotlinx.coroutines.launch
     version = BuildConfig.VERSION_CODE,
     exportSchema = false,
     entities = [
-        UserEntity::class
+        UserEntity::class,
+        ContactEntity::class
     ]
 )
 abstract class ParrotDatabase: RoomDatabase() {
@@ -49,5 +52,6 @@ abstract class ParrotDatabase: RoomDatabase() {
     }
 
     abstract val userDAO: UserDAO
+    abstract val contactDAO: ContactDAO
 
 }

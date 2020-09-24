@@ -11,9 +11,11 @@ import br.felipe.parrot.data.dto.main.main.ContactDTO
 import br.felipe.parrot.data.dto.main.main.ContactResponseDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
+import br.felipe.parrot.data.entity.ContactEntity
 import br.felipe.parrot.domain._config.repository.ParrotRepository
+import kotlinx.coroutines.flow.Flow
 
-class UserRepository (
+class ParrotRepository (
     private val parrotLocalRepository: ParrotLocalRepository,
     private val parrotRemoteRepository: ParrotRemoteRepository
 ): ParrotRepository() {
@@ -49,6 +51,10 @@ class UserRepository (
     suspend fun getContacts(): ParrotResult<List<ContactDTO>> {
         val token = parrotLocalRepository.getToken()
         return parrotRemoteRepository.getContactsUser(token)
+    }
+
+    suspend fun getContactsDatabase(): Flow<List<ContactEntity>> {
+        return parrotLocalRepository.getAllContacts()
     }
 }
 
