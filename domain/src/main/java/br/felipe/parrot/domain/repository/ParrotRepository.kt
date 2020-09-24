@@ -51,6 +51,9 @@ class ParrotRepository (
     suspend fun getContacts(): ParrotResult<List<ContactDTO>> {
         val token = parrotLocalRepository.getToken()
         return parrotRemoteRepository.getContactsUser(token)
+            .onSuccess { contactList ->
+                parrotLocalRepository.saveContacts(contactList)
+            }
     }
 
     suspend fun getContactsDatabase(): Flow<List<ContactEntity>> {

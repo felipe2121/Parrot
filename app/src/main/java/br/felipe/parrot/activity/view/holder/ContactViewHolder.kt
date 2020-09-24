@@ -1,5 +1,6 @@
 package br.felipe.parrot.activity.view.holder
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import br.felipe.parrot.activity.view.listener.ContactClickListener
@@ -13,6 +14,7 @@ class ContactViewHolder(view: View): ContactViewHolderBase(view) {
             setOnClickListener { clickListener?.onClickContact(contact) }
             contact_letter_header.text = contact.name[0].toString()
             contact_name_header.text = contact.name
+            Log.d("********", contact.name)
         }
     }
 }

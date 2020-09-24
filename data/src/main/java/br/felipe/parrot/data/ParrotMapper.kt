@@ -22,6 +22,17 @@ fun LoginReceiveUserDTO.toEntity() = UserEntity(
     token = this.token
 )
 
+fun ContactDTO.toEntity() = ContactEntity(
+    id = this.id ?: "",
+    userId = this.userId ?: "",
+    name = this.name ?: "",
+    photo = this.photo ?: "",
+    email = this.email ?: "",
+    phone = this.phone ?: ""
+)
+
+fun List<ContactDTO>.toEntity() = map { it.toEntity() }
+
 fun List<ContactEntity>.toUI() = map { it.toUI() }
 
 fun ContactEntity.toUI() = Contact(

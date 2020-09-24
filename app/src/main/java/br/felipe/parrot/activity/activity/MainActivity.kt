@@ -17,6 +17,7 @@ import br.felipe.parrot.activity.viewmodel.MainViewModel
 import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.core.exception.ParrotException
 import br.felipe.parrot.core.util.observeEvent
+import br.felipe.parrot.data.ui.Contact
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.login_activity.*
@@ -114,7 +115,7 @@ class MainActivity: AppCompatActivity() {
         }
 
         onContactClicked.observeEvent(this@MainActivity) {
-
+            // Intent
         }
 
         viewStateListing.observe(this@MainActivity) {
@@ -131,6 +132,7 @@ class MainActivity: AppCompatActivity() {
                 }
                 ViewState.IdleState -> {
                     Log.d("**********", "Listing complete!")
+                    progress.visibility = View.GONE
                 }
                 is ViewState.ErrorState -> {
 
