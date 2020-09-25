@@ -11,25 +11,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Parrot" >
-
-        <activity android:name=".activity.activity.SplashScreenActivity"
+        android:theme="@style/Theme.Parrot">
+        <activity android:name=".activity.activity.ContactDetail"></activity>
+        <activity
+            android:name=".activity.activity.SplashScreenActivity"
             android:theme="@style/SplashScreen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.activity.LoginActivity"/>
-
-        <activity android:name=".activity.activity.RegisterActivity"/>
-
-        <activity android:name=".activity.activity.MainActivity"/>
-
+        <activity android:name=".activity.activity.LoginActivity" />
+        <activity android:name=".activity.activity.RegisterActivity" />
+        <activity android:name=".activity.activity.MainActivity" />
         <activity android:name=".activity.activity.CreateContact" />
-
     </application>
 
 </manifest>

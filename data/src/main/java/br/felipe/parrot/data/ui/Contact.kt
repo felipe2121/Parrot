@@ -1,5 +1,9 @@
 package br.felipe.parrot.data.ui
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Contact(
     var id: String = "",
     var userId: String = "",
@@ -7,7 +11,11 @@ data class Contact(
     var photo: String = "",
     var email: String = "",
     var phone: String = ""
-)
+):Parcelable {
+    companion object {
+        const val CONTACT = "contact"
+    }
+}
 
 /***
  * Implementes uma interface que possui uma funcao

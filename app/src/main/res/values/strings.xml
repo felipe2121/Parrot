@@ -38,7 +38,10 @@
 
     <!-- contact screen -->
     <string name="contact_toolbar_name">Contato</string>
-    
+
+    <!-- contact detail -->
+    <string name="contact_detail_name_toolbar">Contato</string>
+
     <!-- edit contact -->
 
     <!-- menu contact -->

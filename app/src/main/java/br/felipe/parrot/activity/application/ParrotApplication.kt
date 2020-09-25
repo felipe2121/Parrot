@@ -1,10 +1,7 @@
 package br.felipe.parrot.activity.application
 
 import android.app.Application
-import br.felipe.parrot.activity.viewmodel.CreateContactViewModel
-import br.felipe.parrot.activity.viewmodel.LoginViewModel
-import br.felipe.parrot.activity.viewmodel.MainViewModel
-import br.felipe.parrot.activity.viewmodel.SingInViewModel
+import br.felipe.parrot.activity.viewmodel.*
 import br.felipe.parrot.data._config.ParrotDatabase
 import br.felipe.parrot.data._config.ParrotDatabase.Companion.dropDatabase
 import br.felipe.parrot.data.dao.ContactDAO
@@ -54,6 +51,7 @@ class ParrotApplication: Application(), DeleteDataBase {
                 factory { SingInViewModel(singIn = get()) }
                 factory { MainViewModel(logoutUseCase = get(), listingContactsUseCase = get()) }
                 factory { CreateContactViewModel(createContactUseCase = get()) }
+                factory { ContactDetailViewModel() }
             }
 
             val inValidateModule = module {

@@ -2,7 +2,6 @@ package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -11,13 +10,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.observe
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.viewmodel.CreateContactViewModel
-import br.felipe.parrot.activity.viewmodel.LoginViewModel
 import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.core.exception.ParrotException
 import br.felipe.parrot.domain.usecase.CreateContactUseCase
-import br.felipe.parrot.domain.usecase.CreateContactUseCase.CreateContactInputException.NewContactInput
 import br.felipe.parrot.domain.usecase.CreateContactUseCase.CreateContactInputException.NewContactInput.*
-import br.felipe.parrot.domain.usecase.LoginUseCase
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.create_contact.*
 import kotlinx.android.synthetic.main.login_activity.*
@@ -36,7 +32,7 @@ class CreateContact : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_add, menu)
+        menuInflater.inflate(R.menu.menu_create_contact, menu)
         return true
     }
 

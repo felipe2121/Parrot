@@ -43,7 +43,7 @@ class ContactsListAdapter(
         return when(viewType) {
             ViewType.FIRST_LETTER.id -> ContactViewHolderHeader(
                 LayoutInflater.from(parent.context).inflate(
-                R.layout.main_view_holder, parent, false))
+                R.layout.main_view_holder_header, parent, false))
             else -> ContactViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.main_view_holder, parent, false)

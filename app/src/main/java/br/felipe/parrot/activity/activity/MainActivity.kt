@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.adapter.ContactsListAdapter
 import br.felipe.parrot.activity.application.DeleteDataBase
+import br.felipe.parrot.activity.view.listener.ContactClickHandle
 import br.felipe.parrot.activity.viewmodel.MainViewModel
 import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.core.exception.ParrotException
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity: AppCompatActivity() {
+class MainActivity: AppCompatActivity(), ContactClickHandle {
 
     private val viewModel by viewModel<MainViewModel>()
     private val logout by inject<DeleteDataBase>()
@@ -115,7 +116,7 @@ class MainActivity: AppCompatActivity() {
         }
 
         onContactClicked.observeEvent(this@MainActivity) {
-            // Intent
+            this@MainActivity.handleArticleClick(it)
         }
 
         viewStateListing.observe(this@MainActivity) {
