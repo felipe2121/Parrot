@@ -87,6 +87,9 @@ class RegisterActivity : AppCompatActivity() {
                     finish()
                 }
                 is ViewState.ErrorState -> {
+
+                    register_progress_bar.visibility =  View.GONE
+
                     val exception: ParrotException = it.error
                     if (exception is SignInUseCase.SignInInputException) {
 
