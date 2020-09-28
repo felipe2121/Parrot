@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Parrot">
-        <activity android:name=".activity.activity.ContactDetail"></activity>
+        <activity android:name=".activity.activity.ContactEdit"></activity>
+        <activity android:name=".activity.activity.ContactDetail" />
         <activity
             android:name=".activity.activity.SplashScreenActivity"
             android:theme="@style/SplashScreen">

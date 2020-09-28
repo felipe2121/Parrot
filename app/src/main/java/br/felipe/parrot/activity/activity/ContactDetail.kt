@@ -57,7 +57,7 @@ class ContactDetail : AppCompatActivity() {
 
         if (item.itemId == R.id.ic_edit_menu) {
             // edit contact
-            val it = Intent(this, MainActivity::class.java)
+            val it = Intent(this, ContactEdit::class.java)
             startActivity(it)
             finish()
             return true

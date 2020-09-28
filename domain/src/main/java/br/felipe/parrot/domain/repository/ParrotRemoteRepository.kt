@@ -5,6 +5,7 @@ import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
 import br.felipe.parrot.data.dto.main.createcontact.CreateContactReceiveDTO
 import br.felipe.parrot.data.dto.main.createcontact.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.detailcontact.ContactUpdateDTO
 import br.felipe.parrot.data.dto.main.main.ContactDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
@@ -42,6 +43,12 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
     suspend fun getContactsUser(token: String): ParrotResult<List<ContactDTO>> {
         return executeRequest(api) {
             getContacts(token)
+        }
+    }
+
+    suspend fun sendUpdateContact(token: String, contactId: String, body: ContactUpdateDTO): ParrotResult<ContactDTO> {
+        return executeRequest(api){
+            updateContact(contactId, token, body)
         }
     }
 }

@@ -4,6 +4,7 @@ import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
 import br.felipe.parrot.data.dto.main.createcontact.CreateContactReceiveDTO
 import br.felipe.parrot.data.dto.main.createcontact.CreateContactSendDTO
+import br.felipe.parrot.data.dto.main.detailcontact.ContactUpdateDTO
 import br.felipe.parrot.data.dto.main.main.ContactDTO
 import br.felipe.parrot.data.dto.main.main.ContactResponseDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
@@ -37,4 +38,11 @@ interface ContactsAPI {
     suspend fun getContacts(
         @Header("token") token: String
     ): List<ContactDTO>
+
+    @PUT("contacts")
+    suspend fun updateContact(
+        @Query("id") contactId: String,
+        @Header("token") token: String,
+        @Body contactUpdate: ContactUpdateDTO
+    ): ContactDTO
 }
