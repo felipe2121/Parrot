@@ -2,6 +2,7 @@ package br.felipe.parrot.activity.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -62,7 +63,6 @@ class ContactDetail : AppCompatActivity() {
             finish()
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 
@@ -75,6 +75,7 @@ class ContactDetail : AppCompatActivity() {
 
     private fun bindUI(contact: Contact) {
         contact_detail_text_name.editText?.setText(contact.name)
+        Log.d("*******", contact.name)
         contact_detail_text_email.editText?.setText(contact.email)
         contact_detail_text_phone.editText?.setText(contact.phone)
     }
@@ -85,3 +86,16 @@ class ContactDetail : AppCompatActivity() {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

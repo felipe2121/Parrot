@@ -8,11 +8,11 @@ import br.felipe.parrot.data.dto.main.main.ContactDTO
 import br.felipe.parrot.domain.R
 import br.felipe.parrot.domain._config.usecase.ParrotUseCase
 import br.felipe.parrot.domain.repository.ParrotRepository
-import br.felipe.parrot.domain.usecase.EditContactUseCase.EditContactInputException.*
+import br.felipe.parrot.domain.usecase.ContactEditUseCase.EditContactInputException.*
 
-class EditContactUseCase(
+class ContactEditUseCase(
     private val parrotRepository: ParrotRepository
-): ParrotUseCase.Completable<EditContactUseCase.ParamsUpdateContact, ContactDTO, Unit>() {
+): ParrotUseCase.Completable<ContactEditUseCase.ParamsUpdateContact, ContactDTO, Unit>() {
 
     data class ParamsUpdateContact(
         val updateContact: ContactUpdateDTO

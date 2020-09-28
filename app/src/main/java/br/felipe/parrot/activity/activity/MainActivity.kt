@@ -12,6 +12,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.adapter.ContactsListAdapter
+import br.felipe.parrot.activity.adapter.ContactsListAdapter.AdapterLetter.*
 import br.felipe.parrot.activity.application.DeleteDataBase
 import br.felipe.parrot.activity.view.listener.ContactClickHandle
 import br.felipe.parrot.activity.viewmodel.MainViewModel
@@ -33,7 +34,7 @@ class MainActivity: AppCompatActivity(), ContactClickHandle {
 
     private val viewModel by viewModel<MainViewModel>()
     private val logout by inject<DeleteDataBase>()
-    private val contactListAdapter by lazy { ContactsListAdapter(ContactsListAdapter.AdapterLetter.FIRST) }
+    private val contactListAdapter by lazy { ContactsListAdapter(FIRST) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

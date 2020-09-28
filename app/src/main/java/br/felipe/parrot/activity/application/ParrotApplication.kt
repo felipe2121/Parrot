@@ -4,7 +4,6 @@ import android.app.Application
 import br.felipe.parrot.activity.viewmodel.*
 import br.felipe.parrot.data._config.ParrotDatabase
 import br.felipe.parrot.data._config.ParrotDatabase.Companion.dropDatabase
-import br.felipe.parrot.data.dao.ContactDAO
 import br.felipe.parrot.domain.repository.ParrotRemoteRepository
 import br.felipe.parrot.domain.repository.ParrotRepository
 import br.felipe.parrot.domain.repository.ParrotLocalRepository
@@ -44,6 +43,7 @@ class ParrotApplication: Application(), DeleteDataBase {
                 factory { LogoutUseCase(parrotRepository = get()) }
                 factory { CreateContactUseCase(parrotRepository = get()) }
                 factory { ListingContactsUseCase(parrotRepository = get()) }
+                factory { ContactEditUseCase(parrotRepository = get()) }
             }
 
             val viewModelModule = module {
@@ -52,6 +52,7 @@ class ParrotApplication: Application(), DeleteDataBase {
                 factory { MainViewModel(logoutUseCase = get(), listingContactsUseCase = get()) }
                 factory { CreateContactViewModel(createContactUseCase = get()) }
                 factory { ContactDetailViewModel() }
+                factory { ContactEditViewModel(editContactUseCase = get()) }
             }
 
             val inValidateModule = module {

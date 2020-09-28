@@ -3,6 +3,7 @@ package br.felipe.parrot.activity.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -10,17 +11,15 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.observe
 import br.felipe.parrot.R
 import br.felipe.parrot.activity.viewmodel.ContactEditViewModel
-import br.felipe.parrot.activity.viewmodel.CreateContactViewModel
 import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.core.exception.ParrotException
-import br.felipe.parrot.domain.usecase.CreateContactUseCase
-import br.felipe.parrot.domain.usecase.EditContactUseCase
-import br.felipe.parrot.domain.usecase.EditContactUseCase.*
-import br.felipe.parrot.domain.usecase.EditContactUseCase.EditContactInputException.EditContactInput.*
+import br.felipe.parrot.data.ui.Contact
+import br.felipe.parrot.data.ui.Contact.Companion.CONTACT
+import br.felipe.parrot.domain.usecase.ContactEditUseCase.*
+import br.felipe.parrot.domain.usecase.ContactEditUseCase.EditContactInputException.EditContactInput.*
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.contact_detail.*
 import kotlinx.android.synthetic.main.contact_edit.*
-import kotlinx.android.synthetic.main.create_contact.*
 import kotlinx.android.synthetic.main.login_activity.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,6 +33,11 @@ class ContactEdit : AppCompatActivity() {
 
         setupUI()
         subscribeUI()
+        contactData()
+
+        if (savedInstanceState == null) {
+            viewModel.setContact(intent?.extras?.get(CONTACT) as Contact)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -81,24 +85,32 @@ class ContactEdit : AppCompatActivity() {
         }
     }
 
+    private fun bindUI(contact: Contact) {
+        contact_edit_text_name.editText?.setText(contact.name)
+        Log.d("*******", contact.name)
+        contact_edit_text_email.editText?.setText(contact.email)
+        contact_edit_text_phone.editText?.setText(contact.phone)
+    }
+
     private fun subscribeUI() = viewModel.apply {
 
         viewState.observe(this@ContactEdit) {
             when (it) {
                 ViewState.LoadingState -> {
-                    // create_contact_progress_bar.visibility = View.VISIBLE
+                    contact_edit_progress_bar.visibility = View.VISIBLE
                 }
                 ViewState.EmptyState -> {
 
                 }
                 ViewState.IdleState -> {
+                    contact_edit_progress_bar.visibility = View.GONE
                     val i = Intent(this@ContactEdit, MainActivity::class.java)
                     startActivity(i)
                     finish()
                 }
                 is ViewState.ErrorState -> {
 
-                    // create_contact_progress_bar.visibility = View.GONE
+                    contact_edit_progress_bar.visibility = View.GONE
 
                     val exception: ParrotException = it.error
                     if (exception is EditContactInputException) {
@@ -125,4 +137,21 @@ class ContactEdit : AppCompatActivity() {
         }
 
     }
+
+    private fun contactData() = viewModel.run {
+        contact.observe(this@ContactEdit) {
+            bindUI(it)
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+

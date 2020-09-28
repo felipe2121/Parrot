@@ -3,6 +3,8 @@ package br.felipe.parrot.activity.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.felipe.parrot.activity.view.listener.ContactClickListener
+import br.felipe.parrot.core.util.Event
 import br.felipe.parrot.data.ui.Contact
 
 class ContactDetailViewModel: ViewModel() {
