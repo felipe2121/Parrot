@@ -39,9 +39,10 @@ interface ContactsAPI {
         @Header("token") token: String
     ): List<ContactDTO>
 
-    @PUT("contacts")
+    @PUT("contacts/{id}")
     suspend fun updateContact(
-        @Query("id") contactId: String,
+        @Path("id") contactId: String,
+        // @Query("id") contactId: String,
         @Header("token") token: String,
         @Body contactUpdate: ContactUpdateDTO
     ): ContactDTO

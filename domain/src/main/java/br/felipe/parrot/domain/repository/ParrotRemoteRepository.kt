@@ -1,5 +1,6 @@
 package br.felipe.parrot.domain.repository
 
+import android.util.Log
 import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.data.dto.login.LoginReceiveUserDTO
 import br.felipe.parrot.data.dto.login.LoginSendUserDTO
@@ -46,7 +47,8 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
         }
     }
 
-    suspend fun sendUpdateContact(token: String, contactId: String, body: ContactUpdateDTO): ParrotResult<ContactDTO> {
+    suspend fun sendUpdateContact(contactId: String, token: String, body: ContactUpdateDTO): ParrotResult<ContactDTO> {
+        Log.d("*****4", contactId)
         return executeRequest(api){
             updateContact(contactId, token, body)
         }

@@ -51,7 +51,7 @@ class ParrotApplication: Application(), DeleteDataBase {
                 factory { SingInViewModel(singIn = get()) }
                 factory { MainViewModel(logoutUseCase = get(), listingContactsUseCase = get()) }
                 factory { CreateContactViewModel(createContactUseCase = get()) }
-                factory { ContactDetailViewModel() }
+                factory { ContactDetailViewModel(editContactUseCase = get()) }
                 factory { ContactEditViewModel(editContactUseCase = get()) }
             }
 

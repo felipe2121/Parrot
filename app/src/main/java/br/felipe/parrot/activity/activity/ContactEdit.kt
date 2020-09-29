@@ -35,9 +35,6 @@ class ContactEdit : AppCompatActivity() {
         subscribeUI()
         contactData()
 
-        if (savedInstanceState == null) {
-            viewModel.setContact(intent?.extras?.get(CONTACT) as Contact)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,20 +66,20 @@ class ContactEdit : AppCompatActivity() {
             contact_edit_text_phone.error = null
         }
 
-        edit_contact_save_button.setOnClickListener {
+        /* edit_contact_save_button.setOnClickListener {
 
             val inputTextName = contact_edit_text_name.editText?.text.toString()
             val inputTextEmail = contact_edit_text_email.editText?.text.toString()
             val inputTextPhone = contact_edit_text_phone.editText?.text.toString()
 
             viewModel.updateContact(inputTextName, inputTextEmail, inputTextPhone)
-        }
+        } */
 
-        edit_contact_cancel_button.setOnClickListener {
+        /* edit_contact_cancel_button.setOnClickListener {
             val i = Intent(this@ContactEdit, MainActivity::class.java)
             startActivity(i)
             finish()
-        }
+        } */
     }
 
     private fun bindUI(contact: Contact) {

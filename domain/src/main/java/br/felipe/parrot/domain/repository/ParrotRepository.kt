@@ -13,6 +13,7 @@ import br.felipe.parrot.data.dto.main.main.ContactResponseDTO
 import br.felipe.parrot.data.dto.signin.SignInReceiveUserDTO
 import br.felipe.parrot.data.dto.signin.SignInSendUserDTO
 import br.felipe.parrot.data.entity.ContactEntity
+import br.felipe.parrot.data.ui.Contact
 import br.felipe.parrot.domain._config.repository.ParrotRepository
 import kotlinx.coroutines.flow.Flow
 
@@ -63,9 +64,10 @@ class ParrotRepository (
 
     suspend fun getUpdateContact(id: String, body: ContactUpdateDTO): ParrotResult<ContactDTO> {
         val token = parrotLocalRepository.getToken()
+        Log.d("*****3", id)
         return parrotRemoteRepository.sendUpdateContact(id, token, body)
             .onSuccess {
-                //Save contact
+
             }
     }
 }

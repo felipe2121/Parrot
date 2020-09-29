@@ -133,13 +133,9 @@ class MainActivity: AppCompatActivity(), ContactClickHandle {
 
                 }
                 ViewState.IdleState -> {
-                    Log.d("**********", "Listing complete!")
                     progress.visibility = View.GONE
                 }
                 is ViewState.ErrorState -> {
-
-                    Log.d("**********", "Listing fail")
-
                     val exception: ParrotException = it.error
                     Snackbar.make(Container, exception.errorMessage(this@MainActivity), Snackbar.LENGTH_LONG).show()
                 }

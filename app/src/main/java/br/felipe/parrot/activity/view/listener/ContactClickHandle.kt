@@ -10,7 +10,7 @@ import br.felipe.parrot.data.ui.Contact.Companion.CONTACT
 interface ContactClickHandle {
 
     fun Context.handleArticleClick(contacts: Contact) {
-        Intent(this, ContactEdit::class.java).also { intent ->
+        Intent(this, ContactDetail::class.java).also { intent ->
             intent.putExtra(CONTACT, contacts)
             startActivity(intent)
         }

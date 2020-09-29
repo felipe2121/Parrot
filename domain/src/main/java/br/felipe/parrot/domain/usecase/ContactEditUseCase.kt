@@ -1,5 +1,6 @@
 package br.felipe.parrot.domain.usecase
 
+import android.util.Log
 import br.felipe.parrot.core.exception.ParrotException
 import br.felipe.parrot.core.util.ParrotResult
 import br.felipe.parrot.core.util.StringWrapper
@@ -15,7 +16,8 @@ class ContactEditUseCase(
 ): ParrotUseCase.Completable<ContactEditUseCase.ParamsUpdateContact, ContactDTO, Unit>() {
 
     data class ParamsUpdateContact(
-        val updateContact: ContactUpdateDTO
+        val updateContact: ContactUpdateDTO,
+        val id: String
     )
 
     class EditContactInputException(val errors: List<ErrorType>): ParrotException() {
@@ -29,12 +31,13 @@ class ContactEditUseCase(
 
         if(params == null) return ParrotResult.failure(ParrotException())
 
+        Log.d("*****2", params.id)
+
         if(params.updateContact.name.isBlank()) errors.add(ErrorType(EditContactInput.NAME, StringWrapper(R.string.isBlank_error)))
         if(params.updateContact.email.isBlank()) errors.add(ErrorType(EditContactInput.EMAIL, StringWrapper(R.string.isBlank_error)))
         if(params.updateContact.phone.isBlank()) errors.add(ErrorType(EditContactInput.PHONE, StringWrapper(R.string.isBlank_error)))
 
-        val id: String = ""
-        return if(errors.isEmpty()) parrotRepository.getUpdateContact(id, params.updateContact)
+        return if(errors.isEmpty()) parrotRepository.getUpdateContact(params.id, params.updateContact)
         else ParrotResult.failure(EditContactInputException(errors))
     }
 }

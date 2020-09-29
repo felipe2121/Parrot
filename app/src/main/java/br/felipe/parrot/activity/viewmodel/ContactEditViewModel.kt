@@ -14,6 +14,8 @@ class ContactEditViewModel(
     private val editContactUseCase: ContactEditUseCase
 ): ViewModel() {
 
+    var userId: String = ""
+
     private val _contact = MutableLiveData<Contact>()
     val contact = _contact as LiveData<Contact>
 
@@ -27,7 +29,7 @@ class ContactEditViewModel(
     fun updateContact(inputUpdateContactName: String, inputUpdateContactEmail: String, inputUpdateContactPhone: String) = viewModelScope.launch {
 
         val updateContactInput = ContactUpdateDTO(inputUpdateContactName, inputUpdateContactEmail, inputUpdateContactPhone)
-        editContactUseCase(ContactEditUseCase.ParamsUpdateContact(updateContactInput))
+        editContactUseCase(ContactEditUseCase.ParamsUpdateContact(updateContactInput, userId))
             .onStarted {
                 _viewState.value = ViewState.LoadingState
             }.onSuccess {
