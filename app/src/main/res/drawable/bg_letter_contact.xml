@@ -9,4 +9,14 @@
         android:color="@color/bg_contacts"
         android:width="2dp" />
 
+    <padding
+        android:left="20dp"
+        android:top="15dp"
+        android:right="20dp"
+        android:bottom="15dp" />
+
+    <solid
+        android:color="#E7E0FB"
+        />
+
 </shape>

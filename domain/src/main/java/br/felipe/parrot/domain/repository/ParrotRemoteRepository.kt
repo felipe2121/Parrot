@@ -53,4 +53,10 @@ class ParrotRemoteRepository: ParrotRepository.Remote() {
             updateContact(contactId, token, body)
         }
     }
+
+    suspend fun deleteContact(contactId: String, token: String): ParrotResult<Any> {
+        return executeRequest(api) {
+            deleteContact(contactId, token)
+        }
+    }
 }

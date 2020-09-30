@@ -42,8 +42,13 @@ interface ContactsAPI {
     @PUT("contacts/{id}")
     suspend fun updateContact(
         @Path("id") contactId: String,
-        // @Query("id") contactId: String,
         @Header("token") token: String,
         @Body contactUpdate: ContactUpdateDTO
     ): ContactDTO
+
+    @DELETE("contacts/{id}")
+    suspend fun deleteContact(
+        @Path("id") contactId: String,
+        @Header("token") token: String
+    )
 }

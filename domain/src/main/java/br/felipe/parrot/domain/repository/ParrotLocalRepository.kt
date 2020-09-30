@@ -21,6 +21,14 @@ class ParrotLocalRepository(
         return userDAO.getUser()
     }
 
+    suspend fun deleteDataUser(): Any {
+        return userDAO.deleteDataUser()
+    }
+
+    suspend fun deleteContactsUser(): Any {
+        return contactDAO.deleteAllDataContact()
+    }
+
     suspend fun getAllContacts(): Flow<List<ContactEntity>> {
         return contactDAO.getAllContacts()
     }
@@ -39,5 +47,9 @@ class ParrotLocalRepository(
 
     suspend fun saveContacts(contacts: List<ContactDTO>) {
         contactDAO.insertOrUpdate(contacts.toEntity())
+    }
+
+    suspend fun deleteContact(contactId: String) {
+        contactDAO.deleteContact(contactId)
     }
 }

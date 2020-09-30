@@ -64,10 +64,7 @@ class ContactDetail : AppCompatActivity() {
 
         if (item.itemId == R.id.ic_delete_menu) {
             // delete contact
-            val it = Intent(this, MainActivity::class.java)
-            startActivity(it)
-            finish()
-            return true
+            viewModel.deleteContact()
         }
 
         if (item.itemId == R.id.ic_edit_menu) {
@@ -189,6 +186,36 @@ class ContactDetail : AppCompatActivity() {
                             Snackbar.LENGTH_LONG
                         ).show()
                     }
+                }
+            }
+        }
+
+        viewStateDeleteContact.observe(this@ContactDetail) {
+            when (it) {
+                ViewState.LoadingState -> {
+                    contact_edit_progress.visibility = View.VISIBLE
+                }
+                ViewState.EmptyState -> {
+
+                }
+                ViewState.IdleState -> {
+                    Log.d("**********", "DELETE SUCESS")
+                    contact_edit_progress.visibility = View.GONE
+                    val i = Intent(this@ContactDetail, MainActivity::class.java)
+                    startActivity(i)
+                    finish()
+                }
+                is ViewState.ErrorState -> {
+                    Log.d("**********", "DELETE FALING")
+
+                    contact_edit_progress.visibility = View.GONE
+
+                    val exception: ParrotException = it.error
+                    Snackbar.make(
+                        Container,
+                        exception.errorMessage(this@ContactDetail),
+                        Snackbar.LENGTH_LONG
+                    ).show()
                 }
             }
         }

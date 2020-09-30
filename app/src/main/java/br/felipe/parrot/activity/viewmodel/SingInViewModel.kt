@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 //Criar um enum class com name, email, password, confirmPassword
 class SingInViewModel(
-    private val singIn: SignInUseCase
+    private val singInUseCase: SignInUseCase
 ): ViewModel() {
 
     private val _viewState = MutableLiveData<ViewState>()
@@ -25,7 +25,7 @@ class SingInViewModel(
 
         val signInInput = SignInSendUserDTO(inputSignInName, inputSignInEmail, inputSignInPassword, inputSignInConfirmPassword)
 
-        singIn(SignInUseCase.ParamsSignIn(signInInput))
+        singInUseCase(SignInUseCase.ParamsSignIn(signInInput))
             .onStarted {
                 _viewState.value = ViewState.LoadingState
             }.onSuccess {

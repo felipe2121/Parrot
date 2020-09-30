@@ -44,14 +44,15 @@ class ParrotApplication: Application(), DeleteDataBase {
                 factory { CreateContactUseCase(parrotRepository = get()) }
                 factory { ListingContactsUseCase(parrotRepository = get()) }
                 factory { ContactEditUseCase(parrotRepository = get()) }
+                factory { ContactDeleteUseCase(parrotRepository = get()) }
             }
 
             val viewModelModule = module {
                 factory { LoginViewModel(loginUseCase = get()) }
-                factory { SingInViewModel(singIn = get()) }
+                factory { SingInViewModel(singInUseCase = get()) }
                 factory { MainViewModel(logoutUseCase = get(), listingContactsUseCase = get()) }
                 factory { CreateContactViewModel(createContactUseCase = get()) }
-                factory { ContactDetailViewModel(editContactUseCase = get()) }
+                factory { ContactDetailViewModel(editContactUseCase = get(), contactDeleteUseCase = get()) }
                 factory { ContactEditViewModel(editContactUseCase = get()) }
             }
 

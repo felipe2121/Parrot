@@ -38,7 +38,8 @@ class ParrotRepository (
         val token = parrotLocalRepository.getToken()
         return parrotRemoteRepository.logout(token)
             .onSuccess {
-                Log.d("************", "Sucesso")
+                // parrotLocalRepository.deleteDataUser()
+                // parrotLocalRepository.deleteContactsUser()
             }
     }
 
@@ -66,8 +67,14 @@ class ParrotRepository (
         val token = parrotLocalRepository.getToken()
         Log.d("*****3", id)
         return parrotRemoteRepository.sendUpdateContact(id, token, body)
-            .onSuccess {
+            .onSuccess {}
+    }
 
+    suspend fun deleteContact(id: String): ParrotResult<Any> {
+        val token = parrotLocalRepository.getToken()
+        return parrotRemoteRepository.deleteContact(id, token)
+            .onSuccess {
+                parrotLocalRepository.deleteContact(id)
             }
     }
 }

@@ -25,6 +25,8 @@ abstract class DAO<T> {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     protected abstract suspend fun update(vararg data: @JvmSuppressWildcards T)
 
+
+
     open suspend fun insertOrUpdate(vararg data: @JvmSuppressWildcards T) {
         data.forEach {
             if (insert(it) == DATA_NOT_INSERTED) update(it)
@@ -42,5 +44,6 @@ abstract class DAO<T> {
         if (dataID == DATA_NOT_INSERTED) dataID = update(data).toLong()
         return dataID
     }
+
 
 }

@@ -8,12 +8,14 @@ import androidx.lifecycle.viewModelScope
 import br.felipe.parrot.core.ViewState
 import br.felipe.parrot.data.dto.main.detailcontact.ContactUpdateDTO
 import br.felipe.parrot.data.ui.Contact
+import br.felipe.parrot.domain.usecase.ContactDeleteUseCase
 import br.felipe.parrot.domain.usecase.ContactEditUseCase
 import br.felipe.parrot.domain.usecase.ContactEditUseCase.*
 import kotlinx.coroutines.launch
 
 class ContactDetailViewModel(
-    private val editContactUseCase: ContactEditUseCase
+    private val editContactUseCase: ContactEditUseCase,
+    private val contactDeleteUseCase: ContactDeleteUseCase
 ): ViewModel() {
 
     var contactId: String = ""
@@ -39,6 +41,23 @@ class ContactDetailViewModel(
 
             }.execute()
 
+    }
+
+    private val _viewStateDeleteContact = MutableLiveData<ViewState>()
+    val viewStateDeleteContact = _viewStateDeleteContact as LiveData<ViewState>
+
+    fun deleteContact() = viewModelScope.launch {
+
+        contactDeleteUseCase(ContactDeleteUseCase.ParamsDeleteContact(contactId))
+            .onStarted {
+                _viewStateDeleteContact.value = ViewState.LoadingState
+            }.onSuccess {
+                _viewStateDeleteContact.value = ViewState.IdleState
+            }.onFailure {
+                _viewStateDeleteContact.value = ViewState.ErrorState(it)
+            }.onFinish {
+
+            }.execute()
     }
 
     /*** Change state of screen ***/

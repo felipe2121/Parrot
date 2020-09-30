@@ -7,13 +7,14 @@
     android:layout_height="wrap_content"
     android:foreground="?attr/selectableItemBackgroundBorderless"
     tools:ignore="UnusedAttribute"
-    android:background="@drawable/bg_contacts" >
+    android:background="@drawable/bg_contacts"
+    android:layout_marginTop="16sp" >
 
     <TextView
         android:id="@+id/contact_name"
+        android:textSize="18sp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_contacts"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -22,11 +23,11 @@
 
     <TextView
         android:id="@+id/textView"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/bg_contacts"
+        android:background="@drawable/bg_letter_contact"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/contact_name"
         app:layout_constraintStart_toStartOf="parent"

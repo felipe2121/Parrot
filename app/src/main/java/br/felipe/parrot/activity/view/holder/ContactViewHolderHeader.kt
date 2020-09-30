@@ -13,7 +13,6 @@ class ContactViewHolderHeader(view: View): ContactViewHolderBase(view) {
             setOnClickListener { clickListener?.onClickContact(contact) }
 
             contact_letter_header.text = contact.name[0].toString()
-            contact_name_header.text = contact.name
 
         }
     }
