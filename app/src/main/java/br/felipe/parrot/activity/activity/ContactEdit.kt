@@ -84,7 +84,6 @@ class ContactEdit : AppCompatActivity() {
 
     private fun bindUI(contact: Contact) {
         contact_edit_text_name.editText?.setText(contact.name)
-        Log.d("*******", contact.name)
         contact_edit_text_email.editText?.setText(contact.email)
         contact_edit_text_phone.editText?.setText(contact.phone)
     }

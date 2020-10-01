@@ -15,6 +15,8 @@ data class Contact(
     companion object {
         const val CONTACT = "contact"
     }
+
+    var isHeader: Boolean = false
 }
 
 /***

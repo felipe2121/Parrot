@@ -37,10 +37,8 @@ class MainViewModel(
                 _viewStateListing.value = ViewState.LoadingState
         }.onSuccess {
                 _viewStateListing.value = ViewState.IdleState
-            Log.d("************", "Listing contacts...")
         }.onFailure {
                 _viewStateListing.value = ViewState.ErrorState(it)
-                Log.d("************", "Listing contacts failing...")
         }.onFinish {
 
         }.execute()

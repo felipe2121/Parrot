@@ -54,18 +54,15 @@ class MainActivity: AppCompatActivity(), ContactClickHandle {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if(item.itemId == R.id.action_logout) {
-
-            /*MaterialAlertDialogBuilder(this)
-                .setMessage(resources.getString(R.string.alert_logout))
+            MaterialAlertDialogBuilder(this)
+                .setTitle(resources.getString(R.string.alert_logout_title))
                 .setNegativeButton(resources.getString(R.string.alert_logout_cancel)) { dialog, which ->
-
+                    dialog.cancel()
                 }
                 .setPositiveButton(resources.getString(R.string.alert_logout_confirm)) { dialog, which ->
                     viewModel.logout()
                 }
-                .show()*/
-
-            viewModel.logout()
+                .show()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -134,6 +131,9 @@ class MainActivity: AppCompatActivity(), ContactClickHandle {
                 }
                 ViewState.IdleState -> {
                     progress.visibility = View.GONE
+                    if (contactListAdapter.itemCount == 0) {
+                        empty_list.visibility = View.VISIBLE
+                    }
                 }
                 is ViewState.ErrorState -> {
                     val exception: ParrotException = it.error

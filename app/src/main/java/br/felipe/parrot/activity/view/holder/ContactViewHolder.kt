@@ -15,10 +15,8 @@ class ContactViewHolder(view: View): ContactViewHolderBase(view) {
 
         with(itemView) {
             setOnClickListener { clickListener?.onClickContact(contact) }
-
             textView.text = contact.name[0].toString()
             contact_name.text = contact.name
-
         }
     }
 }

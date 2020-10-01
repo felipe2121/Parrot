@@ -55,9 +55,9 @@ class CreateContact : AppCompatActivity() {
         create_contact_editText_name.addTextChangedListener {
             create_contact_text_name.error = null
         }
-        create_contact_editText_email.addTextChangedListener {
+        /*create_contact_editText_email.addTextChangedListener {
             create_contact_text_email.error = null
-        }
+        }*/
         create_contact_editText_phone.addTextChangedListener {
             create_contact_text_phone.error = null
         }
@@ -98,9 +98,9 @@ class CreateContact : AppCompatActivity() {
                             if (it.type == NAME) {
                                 create_contact_text_name.error = getString(R.string.isBlankError)
                             }
-                            if (it.type == EMAIL) {
+                            /*if (it.type == EMAIL) {
                                 create_contact_text_email.error = getString(R.string.isBlankError)
-                            }
+                            }*/
                             if (it.type == PHONE) {
                                 create_contact_text_phone.error = getString(R.string.isBlankError)
                             }

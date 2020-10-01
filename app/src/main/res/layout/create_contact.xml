@@ -55,7 +55,7 @@
                     android:id="@+id/create_contact_editText_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress|textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

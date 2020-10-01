@@ -32,7 +32,7 @@ class CreateContactUseCase(
         if(params == null) return ParrotResult.failure(ParrotException())
 
         if(params.newContactInput.name.isBlank()) errors.add(ErrorType(NAME, StringWrapper(R.string.isBlank_error)))
-        if(params.newContactInput.email.isBlank()) errors.add(ErrorType(EMAIL, StringWrapper(R.string.isBlank_error)))
+        // if(params.newContactInput.email.isBlank()) errors.add(ErrorType(EMAIL, StringWrapper(R.string.isBlank_error)))
         if(params.newContactInput.phone.isBlank()) errors.add(ErrorType(PHONE, StringWrapper(R.string.isBlank_error)))
 
         return if(errors.isEmpty()) parrotRepository.createContact(params.newContactInput)

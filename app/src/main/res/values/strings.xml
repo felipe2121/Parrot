@@ -1,7 +1,6 @@
 <resources>
 
     <string name="app_name">Parrot</string>
-
     <string name="splash_name">Parrot</string>
 
     <!-- Login Screen -->
@@ -25,9 +24,10 @@
     <string name="main_toolBar_name">Contatos</string>
     <string name="AddContactFragment">Novo Contato</string>
     <string name="menu_item">Sair</string>
-    <string name="alert_logout">Deseja realmente sair da sua conta?</string>
+    <string name="alert_logout_title">Deseja realmente sair da sua conta?</string>
     <string name="alert_logout_cancel">CANCELAR</string>
-    <string name="alert_logout_confirm">COMFIRMAR</string>
+    <string name="alert_logout_confirm">CONFIRMAR</string>
+    <string name="empty_list">Adcione novos contatos</string>
 
     <!-- add new contact screen -->
     <string name="add_new_toolbar_name">Novo Contato</string>
@@ -41,6 +41,9 @@
 
     <!-- contact detail -->
     <string name="contact_detail_name_toolbar">Contato</string>
+    <string name="alert_dialog_title">Deseja realmente confirma a exclusao do contato?</string>
+    <string name="alert_dialog_positive">CONFIRMAR</string>
+    <string name="alert_dialog_negative">CANCELAR</string>
 
     <!-- edit contact -->
     <string name="contact_edit_name_toolbar">Editar Contato</string>

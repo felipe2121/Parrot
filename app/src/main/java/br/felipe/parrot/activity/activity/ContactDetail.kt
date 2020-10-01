@@ -18,12 +18,14 @@ import br.felipe.parrot.core.exception.ParrotException
 import br.felipe.parrot.data.ui.Contact
 import br.felipe.parrot.data.ui.Contact.Companion.CONTACT
 import br.felipe.parrot.domain.usecase.ContactEditUseCase
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.contact_detail.*
 import kotlinx.android.synthetic.main.contact_detail.edit_contact_cancel_button
 import kotlinx.android.synthetic.main.contact_detail.edit_contact_save_button
 import kotlinx.android.synthetic.main.contact_edit.*
 import kotlinx.android.synthetic.main.login_activity.*
+import kotlinx.coroutines.NonCancellable.cancel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -64,7 +66,18 @@ class ContactDetail : AppCompatActivity() {
 
         if (item.itemId == R.id.ic_delete_menu) {
             // delete contact
-            viewModel.deleteContact()
+            MaterialAlertDialogBuilder(this)
+                .setTitle(resources.getString(R.string.alert_dialog_title))
+                .setNegativeButton(resources.getString(R.string.alert_dialog_negative)) { dialog, which ->
+                    // Respond to negative button press
+                    dialog.cancel()
+                }
+                .setPositiveButton(resources.getString(R.string.alert_dialog_positive)) { dialog, which ->
+                    // Respond to positive button press
+                    viewModel.deleteContact()
+                }
+                .show()
+            // viewModel.deleteContact()
         }
 
         if (item.itemId == R.id.ic_edit_menu) {
@@ -133,6 +146,7 @@ class ContactDetail : AppCompatActivity() {
     }
 
     private fun bindUI(contact: Contact) {
+
         contact_detail_text_name.editText?.setText(contact.name)
         contact_detail_text_email.editText?.setText(contact.email)
         contact_detail_text_phone.editText?.setText(contact.phone)

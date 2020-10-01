@@ -22,7 +22,7 @@ class ContactsListAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when(adapterLetter) {
-            AdapterLetter.FIRST -> if (position == 0) {
+            AdapterLetter.FIRST -> if (items[position].isHeader) {
                 ViewType.HEADER.id
             } else {
                 ViewType.OTHER.id
@@ -47,8 +47,17 @@ class ContactsListAdapter(
 
     // receive list of items, clean and add new ones
     fun refresh(newItems: List<Contact>) {
+        val listAux = mutableListOf<Contact>()
+        newItems.groupBy {
+            it.name[0].toString()
+        }.forEach {
+            listAux.add(it.value[0].copy().apply {
+                isHeader = true
+            })
+            listAux.addAll(it.value)
+        }
         items.clear()
-        items.addAll(newItems)
+        items.addAll(listAux)
         notifyDataSetChanged()
     }
 
