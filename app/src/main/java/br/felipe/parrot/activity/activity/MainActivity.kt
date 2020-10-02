@@ -132,7 +132,9 @@ class MainActivity: AppCompatActivity(), ContactClickHandle {
                 ViewState.IdleState -> {
                     progress.visibility = View.GONE
                     if (contactListAdapter.itemCount == 0) {
-                        empty_list.visibility = View.VISIBLE
+                        MaterialAlertDialogBuilder(this@MainActivity)
+                            .setTitle(resources.getString(R.string.empty_list))
+                            .show()
                     }
                 }
                 is ViewState.ErrorState -> {
